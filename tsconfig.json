@@ -18,6 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "target": "ES2017",
     "plugins": [
       {
         "name": "next"
@@ -25,9 +26,29 @@
     ],
     "paths": {
       "@/*": [
-        "./*",
+        "./*"
       ],
-      "react": [ "./node_modules/@types/react" ]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/app/*": [
+        "app/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "react": [
+        "./node_modules/@types/react"
+      ],
+      "auth": [
+        "./auth"
+      ]
     },
     "strictNullChecks": true
   },
@@ -41,4 +62,3 @@
     "node_modules"
   ]
 }
- 
