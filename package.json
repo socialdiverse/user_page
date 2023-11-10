@@ -2,11 +2,6 @@
   "name": "app-name",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "dev:ssr": "ng run appName:serve-ssr",
     "serve:ssr": "node dist/appName/server/main.js",
     "build:ssr": "ng build && ng run appName:server",
