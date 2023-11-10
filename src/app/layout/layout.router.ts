@@ -21,6 +21,46 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
+        path: 'message',
+        loadChildren: () =>
+          import('../modules/message/message.module').then(
+            (m) => m.MessageModule
+          ),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'blog',
+        loadChildren: () =>
+          import('../modules/blog/blog.module').then((m) => m.BlogModule),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'setting',
+        loadChildren: () =>
+          import('../modules/user-setting/user-setting.module').then(
+            (m) => m.UserSettingModule
+          ),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'event',
+        loadChildren: () =>
+          import('../modules/event/event.module').then((m) => m.EventModule),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'market',
+        loadChildren: () =>
+          import('../modules/market/market.module').then((m) => m.MarketModule),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'page',
+        loadChildren: () =>
+          import('../modules/page/page.module').then((m) => m.PageModule),
+        canActivate: [AuthGuard],
+      },
+      {
         path: '',
         redirectTo: '/feed',
         pathMatch: 'full',
