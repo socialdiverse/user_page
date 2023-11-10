@@ -8,7 +8,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
+        path: 'feed',
         loadChildren: () =>
           import('../modules/feed/feed.module').then((m) => m.FeedModule),
         // canActivate: [RoleGuard],

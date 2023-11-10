@@ -6,20 +6,6 @@ const routes: Routes = [
   {
     path: '',
     component: FeedComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'feed',
-        pathMatch: 'full',
-      },
-      {
-        path: 'feed',
-        component: FeedComponent,
-        data: { returnUrl: window.location.pathname },
-      },
-      { path: '', redirectTo: 'feed', pathMatch: 'full' },
-      { path: '**', redirectTo: 'feed', pathMatch: 'full' },
-    ],
   },
 ];
 
