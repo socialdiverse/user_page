@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { STATUS_CODE } from '../../constants/variable';
+import { STATUS_CODE } from '../../helpers/const_variable';
 
 @Injectable({
   providedIn: 'root',
