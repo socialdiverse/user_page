@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router'; 
 
-const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('../app/layout/layout.module').then((m) => m.LayoutModule),
+  },
+  { path: '**', redirectTo: 'error/404' },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRouting {}
