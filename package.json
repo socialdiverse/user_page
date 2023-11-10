@@ -2,9 +2,9 @@
   "name": "app-name",
   "version": "0.0.0",
   "scripts": {
-    "dev:ssr": "ng run appName:serve-ssr",
-    "serve:ssr": "node dist/appName/server/main.js",
-    "build:ssr": "ng build && ng run appName:server",
+    "dev": "ng run appName:serve-ssr",
+    "serve": "node dist/appName/server/main.js",
+    "build": "ng build && ng run appName:server",
     "prerender": "ng run appName:prerender"
   },
   "private": true,
