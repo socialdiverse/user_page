@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-feed',
-  templateUrl: './feed.component.html',
+  selector: 'app-post',
+  templateUrl: './post.component.html'
 })
-export class FeedComponent implements OnInit {
+export class PostComponent implements OnInit {
 
   constructor() { }
 
