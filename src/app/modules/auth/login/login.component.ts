@@ -26,10 +26,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.account, this.user.password).subscribe(
       (res: any) => {
         if (res) {
-          this.localStorageService.set(
-            this.authLocalStorageToken,
-            JSON.stringify(res)
-          );
           this.router.navigate(['/']);
         } else {
           this.messageError = res.error.message || res.error;
