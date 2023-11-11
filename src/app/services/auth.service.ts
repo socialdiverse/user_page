@@ -46,12 +46,18 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  logout = (param: any): Promise<Object> => {
+  logout = (): Promise<Object> => {
     return new Promise((resolve, reject) => {
       let url = `${this.API_URL}auth/logout`;
-      this.apiService.post(url, param).subscribe();
-      this.localStorageService.delete(this.authLocalStorageToken);
-      this.router.navigate(['auth/login']);
+      this.apiService.get(url).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        (err: any) => {
+          this.removeCurrentUser();
+          reject(err);
+        }
+      );
     });
   };
 
