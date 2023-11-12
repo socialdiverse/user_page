@@ -23,6 +23,7 @@
     "@nguniversal/express-engine": "^14.2.3",
     "express": "^4.15.2",
     "ionicons": "^7.2.1",
+    "lucide-angular": "^0.292.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "radash": "^11.0.0",

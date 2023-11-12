@@ -5093,6 +5093,13 @@ lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.14.0.tgz#21be64954a4680e303a09e9468f880b98a0b3c7f"
   integrity sha512-EIRtP1GrSJny0dqb50QXRUNBxHJhcpxHC++M5tD7RYbvLLn5KVWKsbyswSSqDuU15UFi3bgTQIY8nhDMeF6aDQ==
 
+lucide-angular@^0.292.0:
+  version "0.292.0"
+  resolved "https://registry.yarnpkg.com/lucide-angular/-/lucide-angular-0.292.0.tgz#09f1e860a0cf50a97a4878558580fb90124ed8f0"
+  integrity sha512-soQKzdy9Z0kbTQTZUL60GvdsFIesxWD1KqI5c3SlrjX2Bd/Ni2gFaDN2KruIU7P7jApMH0zT0sA/gbO/dHEupw==
+  dependencies:
+    tslib "^2.3.0"
+
 magic-string@0.26.2:
   version "0.26.2"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.2.tgz#5331700e4158cd6befda738bb6b0c7b93c0d4432"

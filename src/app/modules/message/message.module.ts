@@ -6,6 +6,23 @@ import { ChatListComponent } from './chat-list/chat-list.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { ChatProfileComponent } from './chat-profile/chat-profile.component';
 import { TimeAgoDirective } from 'src/app/directives/time-ago.directive';
+import {
+  AlertCircle,
+  CheckCircle,
+  ChevronLeft,
+  Files,
+  Gift,
+  Heart,
+  Image,
+  LucideAngularModule,
+  Phone,
+  PlusCircle,
+  Send,
+  Settings,
+  Smile,
+  Video
+} from "lucide-angular";
+
 
 @NgModule({
   declarations: [
@@ -14,6 +31,21 @@ import { TimeAgoDirective } from 'src/app/directives/time-ago.directive';
     ChatRoomComponent,
     ChatProfileComponent,
   ],
-  imports: [CommonModule, MessageRouting, TimeAgoDirective],
+  imports: [CommonModule, MessageRouting, TimeAgoDirective, LucideAngularModule.pick({
+    Smile,
+    PlusCircle,
+    Send,
+    Heart,
+    Settings,
+    CheckCircle,
+    ChevronLeft,
+    Phone,
+    Video,
+    AlertCircle,
+    Image,
+    Files,
+    Gift
+  })],
 })
-export class MessageModule {}
+export class MessageModule {
+}
