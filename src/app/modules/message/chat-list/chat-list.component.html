@@ -1,7 +1,7 @@
 <div class="md:w-[360px] relative border-r dark:border-slate-700">
   <div
-    id="side-chat"
     class="top-0 left-0 max-md:fixed max-md:w-5/6 max-md:h-screen bg-white z-50 max-md:shadow max-md:-translate-x-full dark:bg-dark2"
+    id="side-chat"
   >
     <div class="p-4 border-b dark:border-slate-700">
       <div class="flex mt-2 items-center justify-between">
@@ -12,11 +12,7 @@
         <!-- right action buttons -->
         <div class="flex items-center gap-2.5">
           <button class="group">
-            <!-- <ion-icon
-          name="settings-outline"
-          class="text-2xl flex group-aria-expanded:rotate-180"
-        ></ion-icon> -->
-            <div>Icon</div>
+            <lucide-angular name="settings"></lucide-angular>
           </button>
           <div
             class="md:w-[270px] w-full"
@@ -49,12 +45,13 @@
 
           <button class="">
             <!-- <ion-icon name="checkmark-circle-outline" class="text-2xl flex"></ion-icon> -->
+            <lucide-angular name="check-circle"></lucide-angular>
           </button>
 
           <!-- mobile toggle menu -->
           <button
-            type="button"
             class="md:hidden"
+            type="button"
             uk-toggle="target: #side-chat ; cls: max-md:-translate-x-full"
           >
             <!-- <ion-icon name="chevron-down-outline"></ion-icon> -->
@@ -68,9 +65,9 @@
           <!-- <ion-icon name="search" class="text-xl"></ion-icon> -->
         </div>
         <input
-          type="text"
-          placeholder="Search"
           class="w-full !pl-10 !py-2 !rounded-lg"
+          placeholder="Search"
+          type="text"
         />
       </div>
     </div>
@@ -80,9 +77,9 @@
       class="space-y-2 p-2 overflow-y-auto md:h-[calc(100vh-204px)] h-[calc(100vh-130px)]"
     >
       <a
-        href="#"
-        class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery"
         *ngFor="let chat of chatList"
+        class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery"
+        href="#"
       >
         <div class="relative w-14 h-14 shrink-0">
           <img
@@ -94,8 +91,8 @@
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2 mb-1.5">
             <div class="mr-auto text-sm text-black dark:text-white font-medium">{{ chat.name }}</div>
-            <div [appTimeAgo]="chat.lastMessageTime" class="text-xs font-light text-gray-500 dark:text-white/70" ></div>
-            <div *ngIf="chat.isOnline" class="w-2.5 h-2.5 bg-blue-600 rounded-full dark:bg-slate-700" ></div>
+            <div [appTimeAgo]="chat.lastMessageTime" class="text-xs font-light text-gray-500 dark:text-white/70"></div>
+            <div *ngIf="chat.isOnline" class="w-2.5 h-2.5 bg-blue-600 rounded-full dark:bg-slate-700"></div>
           </div>
           <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">
             {{ chat.lastMessage }}
