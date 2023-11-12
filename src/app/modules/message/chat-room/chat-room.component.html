@@ -1,0 +1,387 @@
+<div class="flex-1">
+  <!-- chat heading -->
+  <div
+    class="flex items-center justify-between gap-2 w- px-6 py-3.5 z-10 border-b dark:border-slate-700 uk-animation-slide-top-medium"
+  >
+    <div class="flex items-center sm:gap-4 gap-2">
+      <!-- toggle for mobile -->
+      <button
+        class="md:hidden"
+        type="button"
+        uk-toggle="target: #side-chat ; cls: max-md:-translate-x-full"
+      >
+        <!-- <ion-icon
+          name="chevron-back-outline"
+          class="text-2xl -ml-4"
+        ></ion-icon> -->
+        <div>Icon</div>
+      </button>
+
+      <div
+        class="relative cursor-pointer max-md:hidden"
+        uk-toggle="target: .rightt ; cls: hidden"
+      >
+        <img
+          [src]="profile?.avatarUrl"
+          alt="avatar url"
+          class="w-8 h-8 rounded-full shadow"
+        />
+        <div
+          *ngIf="profile?.isOnline"
+          class="w-2 h-2 bg-teal-500 rounded-full absolute right-0 bottom-0 m-px"
+        ></div>
+      </div>
+      <div class="cursor-pointer" uk-toggle="target: .rightt ; cls: hidden">
+        <div class="text-base font-bold">{{ profile?.displayName }}</div>
+        <div class="text-xs text-green-500 font-semibold">{{ profile?.isOnline ? 'Online' : 'Offline' }}</div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button class="button__ico" type="button">
+        <svg
+          class="w-6 h-6"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </button>
+      <button class="hover:bg-slate-100 p-1.5 rounded-full" type="button">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+      <button
+        class="hover:bg-slate-100 p-1.5 rounded-full"
+        type="button"
+        uk-toggle="target: .rightt ; cls: hidden"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- chats bubble -->
+  <div
+    class="w-full p-5 py-10 overflow-y-auto md:h-[calc(100vh-204px)] h-[calc(100vh-195px)]"
+  >
+    <div class="py-10 text-center text-sm lg:pt-8">
+      <img
+        alt=""
+        class="w-24 h-24 rounded-full mx-auto mb-3"
+        src="assets/images/avatars/avatar-6.jpg"
+      />
+      <div class="mt-8">
+        <div
+          class="md:text-xl text-base font-medium text-black dark:text-white"
+        >
+          Monroe Parker
+        </div>
+        <div class="text-gray-500 text-sm dark:text-white/80">@Monroepark</div>
+      </div>
+      <div class="mt-3.5">
+        <a
+          class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold bg-secondery"
+          href="timeline.html"
+        >View profile</a
+        >
+      </div>
+    </div>
+
+    <div class="text-sm font-medium space-y-6">
+
+      <div *ngFor="let m of messages">
+        <!-- sent -->
+        <div *ngIf="m.isMe; else elseBlock" class="flex flex-row-reverse items-end">
+          <div class="flex justify-start items-end gap-3">
+            <div class="flex gap-3 flex-col items-end">
+              <div *ngFor="let media of m.mediaList" class="block rounded-[18px] border overflow-hidden">
+                <div class="max-w-md">
+                  <div class="max-w-full relative w-72">
+                    <div class="relative" style="padding-bottom: 57.4286%">
+                      <div class="w-full h-full absolute inset-0">
+                        <img
+                          [src]="media.link"
+                          class="block max-w-full max-h-52 w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow"
+              >
+                {{m.content}}
+              </div>
+            </div>
+
+            <img
+              [src]="m.sender.avatarUrl"
+              class="w-5 h-5 rounded-full shadow"
+            />
+          </div>
+        </div>
+
+        <!-- received -->
+        <ng-template #elseBlock>
+          <div class="flex justify-start items-end gap-3">
+            <img
+              [src]="m.sender.avatarUrl"
+              class="w-9 h-9 rounded-full shadow"
+            />
+            <div class="flex gap-3 flex-col items-start">
+              <div *ngFor="let media of m.mediaList"
+                class="block rounded-[18px] border overflow-hidden">
+                <div class="max-w-md">
+                  <div class="max-w-full relative w-72">
+                    <div class="relative" style="padding-bottom: 57.4286%">
+                      <div class="w-full h-full absolute inset-0">
+                        <!-- check if type other type -->
+                        <img
+                          [src]="media.link"
+                          class="block max-w-full max-h-52 w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery">
+                {{m.content}}
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- time -->
+        <div class="flex justify-center mt-6">
+          <div class="font-medium text-gray-500 text-sm dark:text-white/70">
+            April 8,2023,6:30 AM
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sending message area -->
+  <div class="flex items-center md:gap-4 gap-2 md:p-3 p-2 overflow-hidden">
+    <div
+      class="flex items-center gap-2 h-full dark:text-white -mt-1.5"
+      id="message__wrap"
+    >
+      <button class="shrink-0" type="button">
+        <!-- <ion-icon
+          class="text-3xl flex"
+          name="add-circle-outline"
+        ></ion-icon> -->
+        <div>Icons</div>
+      </button>
+      <div
+        class="dropbar pt-36 h-60 bg-gradient-to-t via-white from-white via-30% from-30% dark:from-slate-900 dark:via-900"
+        uk-drop="stretch: x; target: #message__wrap ;animation:  slide-bottom ;animate-out: true; pos: top-left; offset:10 ; mode: click ; duration: 200"
+      >
+        <div
+          class="sm:w-full p-3 flex justify-center gap-5"
+          uk-scrollspy="target: > button; cls: uk-animation-slide-bottom-small; delay: 100;repeat:true"
+        >
+          <button
+            class="bg-sky-50 text-sky-600 border border-sky-100 shadow-sm p-2.5 rounded-full shrink-0 duration-100 hover:scale-[1.15] dark:bg-dark3 dark:border-0"
+            type="button"
+          >
+            <!-- <ion-icon class="text-3xl flex" name="image"></ion-icon> -->
+          </button>
+          <button
+            class="bg-green-50 text-green-600 border border-green-100 shadow-sm p-2.5 rounded-full shrink-0 duration-100 hover:scale-[1.15] dark:bg-dark3 dark:border-0"
+            type="button"
+          >
+            <!-- <ion-icon class="text-3xl flex" name="images"></ion-icon> -->
+            <div>images</div>
+          </button>
+          <button
+            class="bg-pink-50 text-pink-600 border border-pink-100 shadow-sm p-2.5 rounded-full shrink-0 duration-100 hover:scale-[1.15] dark:bg-dark3 dark:border-0"
+            type="button"
+          >
+            <!-- <ion-icon class="text-3xl flex" name="document-text"></ion-icon> -->
+            <div>document</div>
+          </button>
+          <button
+            class="bg-orange-50 text-orange-600 border border-orange-100 shadow-sm p-2.5 rounded-full shrink-0 duration-100 hover:scale-[1.15] dark:bg-dark3 dark:border-0"
+            type="button"
+          >
+            <!-- <ion-icon class="text-3xl flex" name="gift"></ion-icon> -->
+            <div>gift</div>
+          </button>
+        </div>
+      </div>
+
+      <button class="shrink-0" type="button">
+        <!-- <ion-icon class="text-3xl flex" name="happy-outline"></ion-icon> -->
+        <div>happy</div>
+      </button>
+      <div
+        class="dropbar p-2"
+        uk-drop="stretch: x; target: #message__wrap ;animation: uk-animation-scale-up uk-transform-origin-bottom-left ;animate-out: true; pos: top-left ; offset:2; mode: click ; duration: 200 "
+      >
+        <div
+          class="sm:w-60 bg-white shadow-lg border rounded-xl pr-0 dark:border-slate-700 dark:bg-dark3"
+        >
+          <h4 class="text-sm font-semibold p-3 pb-0">Send Imogi</h4>
+
+          <div
+            class="grid grid-cols-5 overflow-y-auto max-h-44 p-3 text-center text-xl"
+          >
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😊
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🤩
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😎
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🥳
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😂
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🥰
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😡
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😊
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🤩
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😎
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🥳
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😂
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🥰
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😡
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🤔
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😊
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🤩
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😎
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              🥳
+            </div>
+            <div
+              class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+            >
+              😂
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative flex-1">
+      <textarea
+        class="w-full resize-none bg-secondery rounded-full px-4 p-2"
+        placeholder="Write your message"
+        rows="1"
+      ></textarea>
+
+      <button
+        class="text-white shrink-0 p-2 absolute right-0.5 top-0"
+        type="button"
+      >
+        <!-- <ion-icon class="text-xl flex" name="send-outline"></ion-icon> -->
+      </button>
+    </div>
+
+    <button class="flex h-full dark:text-white" type="button">
+      <!-- <ion-icon class="text-3xl flex -mt-3" name="heart-outline"></ion-icon> -->
+    </button>
+  </div>
+</div>
