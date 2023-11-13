@@ -1,0 +1,51 @@
+<!-- suggest title -->
+<div class="sm:my-6 my-3 flex items-center justify-between lg:mt-10">
+  <div>
+    <h2 class="md:text-lg text-base font-semibold text-black">Suggestions</h2>
+    <p class="font-normal text-sm text-gray-500 leading-6">
+      Find a groups You Might Be Interested In.
+    </p>
+  </div>
+  <a class="text-blue-500 sm:block hidden text-sm" href="#"> See all </a>
+</div>
+
+<div class="grid md:grid-cols-2 md:gap-2 gap-3">
+  <div *ngFor="let s of suggestions" class="flex md:items-center space-x-4 p-4 rounded-md box">
+    <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative">
+      <img
+        [src]="s.backgroundUrl"
+        class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm"
+      />
+    </div>
+    <div class="flex-1">
+      <a
+        class="md:text-lg text-base font-semibold capitalize text-black dark:text-white"
+        href="timeline-group.html"
+      >
+        {{s.name}}
+      </a>
+      <div class="flex space-x-2 items-center text-sm font-normal">
+        <div>{{s.membersCount}} Members</div>
+        <div>·</div>
+        <div>{{s.postInWeek}} posts a week</div>
+      </div>
+      <div class="flex items-center mt-2">
+        <img
+          *ngFor="let m of s.mutualFriends"
+          [src]="m"
+          alt=""
+          class="w-6 h-6 rounded-full border-2 border-gray-200 -mr-2"
+        />
+
+        <div class="text-sm text-gray-500 ml-2">{{s.membersCount}} friends are members</div>
+      </div>
+    </div>
+    <button
+      class="button bg-primary-soft text-primary dark:text-white gap-1 max-md:hidden"
+      type="button"
+    >
+      <lucide-angular name="plus-circle"></lucide-angular>
+      Join
+    </button>
+  </div>
+</div>

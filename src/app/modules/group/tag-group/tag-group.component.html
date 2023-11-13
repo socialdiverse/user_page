@@ -1,0 +1,128 @@
+<div class="page-heading">
+  <h1 class="page-title">Groups</h1>
+  <nav class="nav__underline">
+    <ul
+      class="group"
+      uk-switcher="connect: #group-tabs ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium"
+    >
+      <li><a href="#"> Suggestions </a></li>
+      <li><a href="#"> Popular </a></li>
+      <li><a href="#"> My groups </a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- group list tabs -->
+<div class="uk-switcher" id="group-tabs">
+  <!-- card layout 1 -->
+  <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2.5">
+    <div *ngFor="let s of groupSuggestions" class="card">
+      <a href="timeline-group.html">
+        <div class="card-media h-24">
+          <img [ngSrc]="s.backgroundUrl" height="243" width="245" />
+          <div class="card-overly"></div>
+        </div>
+      </a>
+      <div class="card-body relative z-10">
+        <img
+          [src]="s.avatarUrl"
+          class="w-10 rounded-full mb-2 shadow -mt-8 relative border-2 border-white dark:border-slate-800"
+        />
+        <a href="timeline-group.html">
+          <h4 class="card-title">
+            {{ s.name }}
+          </h4>
+        </a>
+        <div class="card-list-info font-normal mt-1">
+          <a href="#"> {{s.category}} </a>
+          <div class="md:block hidden">·</div>
+          <div>{{s.membersCount}} members</div>
+        </div>
+        <div class="flex gap-2">
+          <button class="button bg-primary text-white flex-1" type="button">
+            Join
+          </button>
+          <a class="button bg-secondery !w-auto" href="timeline-group.html">
+            View
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- card layout 2 -->
+  <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2.5">
+    <div *ngFor="let p of groupPopulars" class="card">
+      <a href="timeline-group.html">
+        <div class="card-media h-24">
+          <img [src]="p.backgroundUrl" alt="" />
+          <div class="card-overly"></div>
+        </div>
+      </a>
+      <div class="card-body">
+        <a href="timeline-group.html">
+          <h4 class="card-title">{{p.name}}</h4></a
+        >
+        <div class="card-text">
+          <div class="card-list-info font-normal mt-1">
+            <div>{{p.membersCount}} members</div>
+            <div class="md:block hidden">·</div>
+            <a href="#"> {{p.category}} </a>
+          </div>
+          <div class="flex items-center gap-3 mt-3">
+            <div class="flex -space-x-2">
+              <img
+                *ngFor="let u of p.mutualFriends"
+                [src]="u"
+                class="w-6 rounded-full border-2 border-white dark:border-slate-800"
+              />
+
+            </div>
+            <p class="card-text">{{p.membersCount}} friend are members</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button class="button bg-primary text-white flex-1" type="button">
+            Join
+          </button>
+          <a class="button bg-secondery !w-auto" href="timeline-group.html">
+            View
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- card layout 3 -->
+  <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2.5">
+    <div *ngFor="let m of myGroups" class="card">
+      <a href="timeline-group.html">
+        <div class="card-media h-24">
+          <img [src]="m.backgroundUrl  " alt="" />
+          <div class="card-overly"></div>
+        </div>
+      </a>
+      <div class="card-body">
+        <a href="timeline-group.html">
+          <h4 class="card-title">{{m.name}}</h4>
+        </a>
+        <div class="card-list-info font-normal mt-1">
+          <a href="#"> {{m.category}} </a>
+          <div class="md:block hidden">·</div>
+          <div>{{m.membersCount}} members</div>
+        </div>
+        <div class="flex gap-2">
+          <button
+            class="button bg-primary-soft text-primary dark:text-white flex-1"
+            type="button"
+          >
+            Join
+          </button>
+          <button class="button bg-secondery flex-1" type="button">
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
