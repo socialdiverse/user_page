@@ -15,7 +15,7 @@ export class AuthService implements OnDestroy {
   private unsubscribe: Subscription[] = [];
 
   isTokenInValid: BehaviorSubject<any>;
-  API_URL = environment.apiUrl;
+  API_URL = environment.domain+ "api/";
 
   constructor(
     private authHttpService: AuthHTTPService,

@@ -1,25 +1,12 @@
-import { environment } from 'src/environments/environment';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ApiService } from './http-service/api.service';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EventService {
-  constructor(private apiService: ApiService) {}
-  API_URL = environment.apiUrl + 'events';
-
-  get = (): Promise<Object> => {
-    return new Promise((resolve, reject) => {
-      let url = `${this.API_URL}`;
-      this.apiService.getWithToken(url).subscribe(
-        (res) => {
-          resolve(res);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
-  };
+export class EventService extends BaseService {
+  constructor(@Inject(ApiService) apiService: ApiService) {
+    super(apiService, 'blogs');
+  }
 }

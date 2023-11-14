@@ -55,6 +55,23 @@ export class ApiService {
       );
   };
 
+  updateWithToken= (url: string, data: any): Observable<any> => {
+    let headers = this.getHeaders();
+    return this.httpClient
+      .patch(url, data, { observe: 'response', headers })
+      .pipe(
+        map((res: any) => {
+          return res.body;
+        }),
+        catchError((err) => {
+          if (err.status == STATUS_CODE.UNAUTHORIZED) {
+            this.isCallCheckToken.next(true);
+          }
+          return throwError(err);
+        })
+      );
+  };
+
   getWithToken = (url: string): Observable<any> => {
     let headers = this.getHeaders();
     return this.httpClient.get(url, { observe: 'response', headers }).pipe(
