@@ -6,7 +6,7 @@ import { ApiService } from './http-service/api.service';
   providedIn: 'root',
 })
 export class BaseService {
-  constructor(private apiService: ApiService, private endpoint: string) {}
+  constructor(public apiService: ApiService, private endpoint: string) {}
   url = environment.domain + 'api/'+ this.endpoint;
 
   get = (): Promise<Object> => {
