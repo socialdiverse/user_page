@@ -5,15 +5,29 @@ import { GroupRouting } from './group.routing';
 import { TagGroupComponent } from './tag-group/tag-group.component';
 import { GroupCategoriesComponent } from './group-categories/group-categories.component';
 import { GroupSuggestComponent } from './group-suggest/group-suggest.component';
-import { ChevronLeft, ChevronRight, LucideAngularModule, PlusCircle } from "lucide-angular";
+import {
+  ChevronLeft,
+  ChevronRight,
+  LucideAngularModule,
+  PlusCircle,
+} from 'lucide-angular';
 
 @NgModule({
-  declarations: [GroupComponent, TagGroupComponent, GroupCategoriesComponent, GroupSuggestComponent],
-  imports: [CommonModule, GroupRouting, NgOptimizedImage, LucideAngularModule.pick({
-    ChevronLeft,
-    ChevronRight,
-    PlusCircle
-  })],
+  declarations: [
+    GroupComponent,
+    TagGroupComponent,
+    GroupCategoriesComponent,
+    GroupSuggestComponent,
+  ],
+  imports: [
+    CommonModule,
+    GroupRouting,
+    NgOptimizedImage,
+    LucideAngularModule.pick({
+      ChevronLeft,
+      ChevronRight,
+      PlusCircle,
+    }),
+  ],
 })
-export class GroupModule {
-}
+export class GroupModule {}

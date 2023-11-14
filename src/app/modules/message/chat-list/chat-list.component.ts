@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MockService } from 'src/app/services/mock.service';
-import { ChatList } from "src/app/modules/message/types";
+import { MockService } from 'src/app/helpers/mock.service';
+import { ChatList } from 'src/app/modules/message/types';
 
 @Component({
   selector: 'app-chat-list',
@@ -27,6 +27,5 @@ export class ChatListComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

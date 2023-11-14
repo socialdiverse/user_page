@@ -6,22 +6,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedPeopleComponent implements OnInit {
   constructor() {}
-  people: any = [
-    {
-      follower_number: '125k',
-      people_name: 'SonMc',
-      avatar: 'avatar-2.jpg',
-    },
-    {
-      follower_number: '125k',
-      people_name: 'SonMc',
-      avatar: 'avatar-2.jpg',
-    },
-    {
-      follower_number: '125k',
-      people_name: 'SonMc',
-      avatar: 'avatar-2.jpg',
-    },
-  ];
+  people: any = [];
   ngOnInit(): void {}
 }

@@ -1,31 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
-import { environment } from 'src/environments/environment';
+import { Component } from '@angular/core';
+import { ApiService } from 'src/app/helpers/api.service';
+import { LocalStorage } from 'src/app/helpers/local-storage';
+import { Logout } from 'src/app/usecases/auth/logout';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+export class HeaderComponent {
+  logoutUsecase;
   constructor(
-    private router: Router,
-    private authService: AuthService,
-    private localStorageService: LocalStorageService
-  ) {}
-
-  ngOnInit(): void {}
+    private apiService: ApiService,
+    private localStorage: LocalStorage
+  ) {
+    this.logoutUsecase = new Logout(this.apiService, this.localStorage);
+  }
 
   logout() {
-    this.authService
-      .logout()
-      .then((res) => {
-        this.localStorageService.delete(this.authLocalStorageToken);
-        this.router.navigate(['auth/login']);
-      })
-      .catch();
+    this.logoutUsecase.execute();
   }
 }

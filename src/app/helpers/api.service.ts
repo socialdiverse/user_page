@@ -1,4 +1,4 @@
-import { LocalStorageService } from './../storage/local-storage.service';
+import { LocalStorage } from './local-storage';
 import { environment } from 'src/environments/environment';
 
 import { Injectable } from '@angular/core';
@@ -6,8 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-
-import { STATUS_CODE } from '../../helpers/const_variable';
+import { STATUS_CODE } from './const_variable';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class ApiService {
   private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
   constructor(
     public httpClient: HttpClient,
-    public localStorage: LocalStorageService
+    public localStorage: LocalStorage
   ) {
     this.isCallCheckToken = new BehaviorSubject<boolean>(false);
   }
@@ -55,7 +54,7 @@ export class ApiService {
       );
   };
 
-  updateWithToken= (url: string, data: any): Observable<any> => {
+  updateWithToken = (url: string, data: any): Observable<any> => {
     let headers = this.getHeaders();
     return this.httpClient
       .patch(url, data, { observe: 'response', headers })

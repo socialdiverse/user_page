@@ -1,4 +1,3 @@
-import { LocalStorageService } from './../services/storage/local-storage.service';
 import { Injectable } from '@angular/core';
 import {
   Router,
@@ -7,17 +6,15 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { LocalStorage } from '../helpers/local-storage';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
-  constructor(
-    private router: Router,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private router: Router, private localStorage: LocalStorage) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let currentUser = this.localStorageService.get(this.authLocalStorageToken);
+    let currentUser = this.localStorage.get(this.authLocalStorageToken);
     if (currentUser) {
       return true;
     }

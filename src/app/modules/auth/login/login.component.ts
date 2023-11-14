@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
-import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/helpers/api.service';
+import { LocalStorage } from 'src/app/helpers/local-storage';
+import { Login } from 'src/app/usecases/auth/login';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,27 +14,19 @@ export class LoginComponent implements OnInit {
     account: '',
     password: '',
   };
-  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+  login;
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private localStorageService: LocalStorageService
-  ) {}
+    private apiService: ApiService,
+    private localStorage: LocalStorage
+  ) {
+    this.login = new Login(this.apiService, this.localStorage);
+  }
 
   ngOnInit(): void {}
 
   signin() {
-    this.authService.login(this.user.account, this.user.password).subscribe(
-      (res: any) => {
-        if (res) {
-          this.router.navigate(['/']);
-        } else {
-          this.messageError = res.error.message || res.error;
-        }
-      },
-      (err) => {
-        this.messageError = err.error.message || err.error;
-      }
-    );
+    this.login.execute(this.user.account, this.user.password);
+    this.router.navigate(['/']);
   }
 }

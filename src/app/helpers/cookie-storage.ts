@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class CookieService {
+export class CookieStorage {
   get = (cname: string) => {
     var name = cname + '=';
     var ca = document.cookie.split(';');

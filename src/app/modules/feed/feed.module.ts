@@ -5,7 +5,7 @@ import { FeedRouting } from './feed.routing';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostLoadingComponent } from 'src/app/components/post-loading/post-loading.component';
 import { StoryComponent } from './story/story.component';
-import { OnlineFriendComponent } from './online-friend/online-friend.component';
+import { FeedFriendComponent } from './feed-friend/feed-friend.component';
 import { PremiumPhotosComponent } from './premium-photos/premium-photos.component';
 import { FeedPeopleComponent } from './feed-people/feed-people.component';
 import { TrendComponent } from './trend/trend.component';
@@ -23,7 +23,7 @@ import { IconComponent } from 'src/app/components/icon/icon.component';
     PostListComponent,
     PostLoadingComponent,
     StoryComponent,
-    OnlineFriendComponent,
+    FeedFriendComponent,
     PremiumPhotosComponent,
     FeedPeopleComponent,
     TrendComponent,
