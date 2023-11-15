@@ -20,9 +20,8 @@ import {
   Send,
   Settings,
   Smile,
-  Video
-} from "lucide-angular";
-
+  Video,
+} from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -31,21 +30,25 @@ import {
     ChatRoomComponent,
     ChatProfileComponent,
   ],
-  imports: [CommonModule, MessageRouting, TimeAgoDirective, LucideAngularModule.pick({
-    Smile,
-    PlusCircle,
-    Send,
-    Heart,
-    Settings,
-    CheckCircle,
-    ChevronLeft,
-    Phone,
-    Video,
-    AlertCircle,
-    Image,
-    Files,
-    Gift
-  })],
+  imports: [
+    CommonModule,
+    MessageRouting,
+    TimeAgoDirective,
+    LucideAngularModule.pick({
+      Smile,
+      PlusCircle,
+      Send,
+      Heart,
+      Settings,
+      CheckCircle,
+      ChevronLeft,
+      Phone,
+      Video,
+      AlertCircle,
+      Image,
+      Files,
+      Gift,
+    }),
+  ],
 })
-export class MessageModule {
-}
+export class MessageModule {}
