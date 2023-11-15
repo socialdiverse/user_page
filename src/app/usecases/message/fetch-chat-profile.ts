@@ -1,37 +1,39 @@
 import { ApiService } from 'src/app/helpers/api.service';
 import { environment } from 'src/environments/environment';
+import { MockService } from "src/app/helpers/mock.service";
+import { ProfileUser } from "src/app/modules/message/types";
+
+type ChatProfileRequest = {
+    id: string;
+}
 
 export class FetchChatProfile {
-  constructor(public apiService: ApiService) {}
-  url = environment.domain + 'api/fetch-chat-profile';
-  execute = (): Promise<Object> => {
-    return new Promise((resolve, reject) => {
-      this.apiService.getWithToken(this.url).subscribe(
-        (res) => {
-          const people = [
-            {
-              follower_number: '125k',
-              people_name: 'SonMc',
-              avatar: 'avatar-2.jpg',
-            },
-            {
-              follower_number: '125k',
-              people_name: 'SonMc',
-              avatar: 'avatar-2.jpg',
-            },
-            {
-              follower_number: '125k',
-              people_name: 'SonMc',
-              avatar: 'avatar-2.jpg',
-            },
-          ];
-          //resolve(res);
-          resolve(people);
-        },
-        (err) => {
-          reject(err);
+
+    mock: ProfileUser
+
+    constructor(public apiService: ApiService) {
+        const mockService = new MockService();
+        this.mock = {
+            displayName: mockService._faker.person.fullName(),
+            username: mockService._faker.person.firstName(),
+            id: mockService._faker.string.nanoid(),
+            avatarUrl: mockService._faker.image.avatar(),
+            isOnline: mockService._faker.datatype.boolean()
         }
-      );
-    });
-  };
+    }
+
+    execute = (req: ChatProfileRequest): Promise<ProfileUser> => {
+        const url = `${environment.domain}api/fetch-chat-profile/${req.id}`;
+        return new Promise((resolve, reject) => {
+            this.apiService.getWithToken(url).subscribe(
+                {
+                    next: resolve,
+                    // error: reject,
+                    error: () => {
+                        resolve(this.mock)
+                    }
+                }
+            );
+        });
+    };
 }

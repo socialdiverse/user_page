@@ -29,6 +29,7 @@
     "lucide-angular": "^0.292.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
+    "query-string": "^8.1.0",
     "radash": "^11.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

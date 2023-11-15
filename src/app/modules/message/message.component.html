@@ -1,16 +1,16 @@
 <div class="relative overflow-hidden border -m-2.5 dark:border-slate-700">
-  <div class="flex bg-white dark:bg-dark2">
-    <!-- sidebar -->
-    <app-chat-list></app-chat-list>
+    <div class="flex bg-white dark:bg-dark2">
+        <!-- sidebar -->
+        <app-chat-list [chats]="data.chats"></app-chat-list>
 
-    <!-- message center -->
-    <app-chat-room
-      [messages]="data.messages"
-      [profile]="data.user"
-    >
-    </app-chat-room>
+        <!-- message center -->
+        <app-chat-room
+                [messages]="data.messages"
+                [profile]="data.user"
+        >
+        </app-chat-room>
 
-    <!-- user profile right info -->
-    <app-chat-profile [profile]="data.user"></app-chat-profile>
-  </div>
+        <!-- user profile right info -->
+        <app-chat-profile [profile]="data.user"></app-chat-profile>
+    </div>
 </div>
