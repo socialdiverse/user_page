@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MockService } from 'src/app/helpers/mock.service';
+import { ApiService } from 'src/app/helpers/api.service';
 import {
+  ETagGroup,
   GroupCategoryList,
-  GroupList,
-  GroupPopularList,
   GroupSuggestionList,
-  MyGroupList,
+  TagGroupList,
 } from 'src/app/modules/group/types';
+import { FetchCategory } from 'src/app/usecases/group/fetch-categories';
+import { FetchGroupSuggest } from 'src/app/usecases/group/fetch-group-suggest';
+import { FetchTagGroup } from 'src/app/usecases/group/fetch-tag-group';
 
 @Component({
   selector: 'app-group',
@@ -14,76 +16,37 @@ import {
   styleUrls: ['./group.component.css'],
 })
 export class GroupComponent implements OnInit {
-  groupSuggestions: GroupList = [];
-  groupPopulars: GroupPopularList = [];
-  myGroups: MyGroupList = [];
+  //
+  groupSuggestions: TagGroupList = [];
+  groupPopulars: TagGroupList = [];
+  myGroups: TagGroupList = [];
 
   categories: GroupCategoryList = [];
   suggestions: GroupSuggestionList = [];
 
-  constructor(mockService: MockService) {
-    this.groupSuggestions = mockService.generate(4, () => {
-      return {
-        id: mockService._faker.string.nanoid(),
-        backgroundUrl: mockService._faker.image.urlLoremFlickr(),
-        avatarUrl: mockService._faker.image.avatar(),
-        name: mockService._faker.company.name(),
-        category: mockService._faker.company.buzzVerb(),
-        membersCount: mockService._faker.number.int({ max: 1000 }),
-      };
-    });
+  fetchTagGroup;
+  fetchCategory;
+  fetchSuggestions;
 
-    this.groupPopulars = mockService.generate(4, () => {
-      return {
-        id: mockService._faker.string.nanoid(),
-        backgroundUrl: mockService._faker.image.urlLoremFlickr(),
-        avatarUrl: mockService._faker.image.urlLoremFlickr(),
-        name: mockService._faker.company.name(),
-        category: mockService._faker.company.buzzVerb(),
-        membersCount: mockService._faker.number.int({ max: 1000 }),
-        mutualFriends: [
-          mockService._faker.image.urlLoremFlickr(),
-          mockService._faker.image.urlLoremFlickr(),
-          mockService._faker.image.urlLoremFlickr(),
-        ],
-      };
-    });
-
-    this.myGroups = mockService.generate(4, () => {
-      return {
-        id: mockService._faker.string.nanoid(),
-        backgroundUrl: mockService._faker.image.urlLoremFlickr(),
-        name: mockService._faker.company.name(),
-        category: mockService._faker.company.buzzVerb(),
-        membersCount: mockService._faker.number.int({ max: 1000 }),
-      };
-    });
-
-    this.categories = mockService.generate(12, () => {
-      return {
-        id: mockService._faker.string.nanoid(),
-        name: mockService._faker.company.name(),
-        imageUrl: mockService._faker.image.avatar(),
-      };
-    });
-
-    this.suggestions = mockService.generate(4, () => {
-      return {
-        id: mockService._faker.string.nanoid(),
-        backgroundUrl: mockService._faker.image.urlLoremFlickr(),
-        avatarUrl: mockService._faker.image.urlLoremFlickr(),
-        name: mockService._faker.company.name(),
-        category: mockService._faker.company.buzzVerb(),
-        membersCount: mockService._faker.number.int({ max: 1000 }),
-        postInWeek: mockService._faker.number.int({ max: 100 }),
-        mutualFriends: [
-          mockService._faker.image.urlLoremFlickr(),
-          mockService._faker.image.urlLoremFlickr(),
-          mockService._faker.image.urlLoremFlickr(),
-        ],
-      };
-    });
+  constructor(apiService: ApiService) {
+    this.fetchTagGroup = new FetchTagGroup(apiService);
+    this.fetchCategory = new FetchCategory(apiService);
+    this.fetchSuggestions = new FetchGroupSuggest(apiService);
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    Promise.all([
+      this.fetchTagGroup.execute({ type: ETagGroup.SUGGESTION }),
+      this.fetchTagGroup.execute({ type: ETagGroup.POPULAR }),
+      this.fetchTagGroup.execute({ type: ETagGroup.SUGGESTION }),
+      this.fetchCategory.execute(),
+      this.fetchSuggestions.execute({ page: 1, pageSize: 4 }),
+    ]).then(([r1, r2, r3, r4, r5]) => {
+      this.groupSuggestions = r1;
+      this.groupPopulars = r2;
+      this.myGroups = r3;
+      this.categories = r4;
+      this.suggestions = r5;
+    });
+  }
 }

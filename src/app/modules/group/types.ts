@@ -1,34 +1,28 @@
-export interface Group {
+export type TagGroup = {
   id: string;
   backgroundUrl: string;
   avatarUrl: string;
   name: string;
   category: string;
   membersCount: number;
+  mutualFriends: any[];
+};
+
+export type TagGroupList = Array<TagGroup>;
+
+export enum ETagGroup {
+  SUGGESTION,
+  POPULAR,
+  MY_GROUP,
 }
 
-export type GroupList = Array<Group>
-
-export type GroupPopular = Group & {
-  // TODO: refer user type
-  mutualFriends: any[]
-}
-export type GroupPopularList = Array<GroupPopular>
-
-export type MyGroup = Omit<Group, 'avatarUrl'>
-export type MyGroupList = Array<MyGroup>
-
-
-export type GroupSuggestion = Group & {
+export type GroupSuggestion = TagGroup & {
   postInWeek: number;
-  mutualFriends: any[]
-
-}
-export type GroupSuggestionList = Array<GroupSuggestion>
-
+};
+export type GroupSuggestionList = Array<GroupSuggestion>;
 
 export type GroupCategory = {
   imageUrl: string;
   name: string;
-}
-export type GroupCategoryList = Array<GroupCategory>
+};
+export type GroupCategoryList = Array<GroupCategory>;

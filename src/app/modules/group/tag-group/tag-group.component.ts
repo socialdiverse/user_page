@@ -1,20 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GroupList, GroupPopularList, MyGroupList } from "src/app/modules/group/types";
+import { TagGroupList } from 'src/app/modules/group/types';
 
 @Component({
   selector: 'app-tag-group',
   templateUrl: './tag-group.component.html',
-  styleUrls: ['./tag-group.component.css']
+  styleUrls: ['./tag-group.component.css'],
 })
 export class TagGroupComponent implements OnInit {
-  @Input('groupSuggestions') groupSuggestions: GroupList = []
-  @Input('groupPopulars') groupPopulars: GroupPopularList = []
-  @Input('myGroups') myGroups: MyGroupList = []
+  @Input('groupSuggestions') groupSuggestions: TagGroupList = [];
+  @Input('groupPopulars') groupPopulars: TagGroupList = [];
+  @Input('myGroups') myGroups: TagGroupList = [];
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
