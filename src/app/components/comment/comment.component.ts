@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent {
   constructor() {}
+  @Input('comment') comment: any = [];
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges) {
+    this.comment = changes['comment'].currentValue;
+  }
 }

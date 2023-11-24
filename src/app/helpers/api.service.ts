@@ -32,7 +32,7 @@ export class ApiService {
 
     getHeaders = () => {
         let user = this.localStorage.get(this.authLocalStorageToken);
-        let token = user ? user['token'] : null;
+        let token = user ? user['accessToken'] : null;
         let headers = new HttpHeaders();
         headers = headers.set('Authorization', `${token}`);
         return headers;

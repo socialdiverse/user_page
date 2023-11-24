@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { POST_TYPE } from 'src/app/helpers/const_variable';
 
 @Component({
   selector: 'app-post-list',
-  templateUrl: './post-list.component.html'
+  templateUrl: './post-list.component.html',
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent {
+  @Input('posts') posts: any = [];
+  post_type = POST_TYPE;
+  postList: any = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges) {
+    this.posts = changes['posts'].currentValue;
   }
-
 }

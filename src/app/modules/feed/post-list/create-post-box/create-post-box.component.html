@@ -1,0 +1,131 @@
+<!-- create status -->
+<div class="hidden lg:p-20 uk- open" id="create-status" uk-modal="">
+  <div
+    class="uk-modal-dialog tt relative overflow-hidden mx-auto bg-white shadow-xl rounded-lg md:w-[520px] w-full dark:bg-dark2"
+  >
+    <div class="text-center py-4 border-b mb-0 dark:border-slate-700">
+      <h2 class="text-lg font-medium text-black">Tạo bài viết</h2>
+
+      <!-- close button -->
+      <button
+        class="button-icon absolute top-0 right-0 m-2.5 uk-modal-close"
+        type="button"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="space-y-5 mt-3 p-2">
+      <textarea
+        class="w-full !text-black placeholder:!text-black !bg-white !border-transparent focus:!border-transparent focus:!ring-transparent !font-normal !text-xl dark:!text-white dark:placeholder:!text-white dark:!bg-slate-800"
+        id="new-feed-box"
+        name="new-feed-box"
+        placeholder="Bạn đang nghĩ gì vậy ?"
+        rows="6"
+        [(ngModel)]="post.content"
+      ></textarea>
+    </div>
+
+    <div
+      class="flex items-center gap-2 text-sm py-2 px-4 font-medium flex-wrap"
+    >
+      <button
+        class="flex items-center gap-1.5 bg-sky-50 text-sky-600 rounded-full py-1 px-2 border-2 border-sky-100 dark:bg-sky-950 dark:border-sky-900"
+        type="button"
+      >
+        <!-- <ion-icon name="image" class="text-base"></ion-icon> -->
+        Image
+      </button>
+      <button
+        class="flex items-center gap-1.5 bg-teal-50 text-teal-600 rounded-full py-1 px-2 border-2 border-teal-100 dark:bg-teal-950 dark:border-teal-900"
+        type="button"
+      >
+        <!-- <ion-icon name="videocam" class="text-base"></ion-icon> -->
+        Video
+      </button>
+      <button
+        class="flex items-center gap-1.5 bg-orange-50 text-orange-600 rounded-full py-1 px-2 border-2 border-orange-100 dark:bg-yellow-950 dark:border-yellow-900"
+        type="button"
+      >
+        <!-- <ion-icon name="happy" class="text-base"></ion-icon> -->
+        Feeling
+      </button>
+      <button
+        class="flex items-center gap-1.5 bg-red-50 text-red-600 rounded-full py-1 px-2 border-2 border-rose-100 dark:bg-rose-950 dark:border-rose-900"
+        type="button"
+      >
+        <!-- <ion-icon name="location" class="text-base"></ion-icon> -->
+        Check in
+      </button>
+      <button
+        class="grid place-items-center w-8 h-8 text-xl rounded-full bg-secondery"
+        type="button"
+      >
+        <!-- <ion-icon name="ellipsis-horizontal"></ion-icon> -->
+      </button>
+    </div>
+
+    <div class="p-5 flex justify-between items-center">
+      <div>
+        <button
+          class="inline-flex items-center py-1 px-2.5 gap-1 font-medium text-sm rounded-full bg-slate-50 border-2 border-slate-100 group aria-expanded:bg-slate-100 aria-expanded: dark:text-white dark:bg-slate-700 dark:border-slate-600"
+          type="button"
+        >
+          {{post.access_modify}}
+          <!-- <ion-icon
+                  name="chevron-down-outline"
+                  class="text-base duration-500 group-aria-expanded:rotate-180"
+                ></ion-icon> -->
+        </button>
+
+        <div
+          class="p-2 bg-white rounded-lg shadow-lg text-black font-medium border border-slate-100 w-60 dark:bg-slate-700"
+          uk-drop="offset:10;pos: bottom-left; reveal-left;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-bottom-left ; mode:click"
+        >
+          <form>
+            <label *ngFor="let am of access_modifiers">
+              <input
+                checked
+                class="peer appearance-none hidden"
+                id="monthly1"
+                name="radio-status"
+                type="radio"
+              />
+              <div
+                class="relative flex items-center justify-between cursor-pointer rounded-md p-2 px-3 hover:bg-secondery peer-checked:[&_.active]:block dark:bg-dark3"
+              >
+                <div class="text-sm">{{ am.title }}</div>
+                <!-- <ion-icon
+                        name="checkmark-circle"
+                        class="hidden active absolute -translate-y-1/2 right-2 text-2xl text-blue-600 uk-animation-scale-up"
+                      ></ion-icon> -->
+              </div>
+            </label>
+          </form>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          class="button bg-blue-500 text-white py-2 px-12 text-[14px]"
+          type="button"
+          (click)="onCreatePost()"
+        >
+          Đăng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

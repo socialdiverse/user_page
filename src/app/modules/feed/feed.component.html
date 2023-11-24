@@ -2,7 +2,7 @@
 <div class="lg:flex 2xl:gap-16 gap-12 max-w-[1065px] mx-auto" id="js-oversized">
   <div class="max-w-[680px] mx-auto">
     <app-story></app-story>
-    <app-post-list></app-post-list>
+    <app-post-list [posts]="data.posts"></app-post-list>
     <app-post-loading></app-post-loading>
   </div>
 
@@ -29,3 +29,6 @@
     </div>
   </div>
 </div>
+<app-post-preview></app-post-preview>
+<app-create-post-box (create_post)="create_post($event)"></app-create-post-box>
+<app-create-history-box></app-create-history-box>

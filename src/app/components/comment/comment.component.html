@@ -1,18 +1,37 @@
-<div class="flex items-start gap-3 relative">
-  <a href="timeline.html">
-    <img
-      src="assets/images/avatars/avatar-2.jpg"
-      alt=""
-      class="w-6 h-6 mt-1 rounded-full"
-    />
-  </a>
-  <div class="flex-1">
-    <a
-      href="timeline.html"
-      class="text-black font-medium inline-block dark:text-white"
-    >
-      Steeve
+<div
+  class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40"
+>
+  <div
+    *ngFor="let cmt of comment.items"
+    class="flex items-start gap-3 relative"
+  >
+    <a href="timeline.html">
+      <img
+        src="assets/images/avatars/avatar-2.jpg"
+        alt=""
+        class="w-6 h-6 mt-1 rounded-full"
+      />
     </a>
-    <p class="mt-0.5">What a beautiful photo! I love it. 😍</p>
+    <div class="flex-1">
+      <a
+        href="timeline.html"
+        class="text-black font-medium inline-block dark:text-white"
+      >
+        {{ cmt.user_commented.full_name }}
+      </a>
+      <p class="mt-0.5">{{ cmt.content }}</p>
+    </div>
   </div>
+
+  <button
+    *ngIf="comment.has_next"
+    type="button"
+    class="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 mt-2"
+  >
+    <!-- <ion-icon
+      name="chevron-down-outline"
+      class="ml-auto duration-200 group-aria-expanded:rotate-180"
+    ></ion-icon> -->
+    Xem thêm bình luận
+  </button>
 </div>

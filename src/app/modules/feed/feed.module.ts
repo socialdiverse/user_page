@@ -10,12 +10,13 @@ import { PremiumPhotosComponent } from './premium-photos/premium-photos.componen
 import { FeedPeopleComponent } from './feed-people/feed-people.component';
 import { TrendComponent } from './trend/trend.component';
 import { ProMemberComponent } from './pro-member/pro-member.component';
-import { PostTypeImageComponent } from './post-list/post-types/post-type-image/post-type-image.component';
-import { PostTextComponent } from './post-list/post-types/post-text/post-text.component';
-import { PostImagesComponent } from './post-list/post-types/post-images/post-images.component';
 import { CommentComponent } from 'src/app/components/comment/comment.component';
 import { ChatBoxComponent } from 'src/app/components/chatbox/chatbox.component';
 import { IconComponent } from 'src/app/components/icon/icon.component';
+import { PostPreviewComponent } from './post-list/post-preview/post-preview.component';
+import { CreateHistoryBoxComponent } from './post-list/create-history-box/create-history-box.component';
+import { CreatePostBoxComponent } from './post-list/create-post-box/create-post-box.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,13 @@ import { IconComponent } from 'src/app/components/icon/icon.component';
     FeedPeopleComponent,
     TrendComponent,
     ProMemberComponent,
-    PostTypeImageComponent,
-    PostTextComponent,
-    PostImagesComponent,
     CommentComponent,
     IconComponent,
     ChatBoxComponent,
+    CreatePostBoxComponent,
+    CreateHistoryBoxComponent,
+    PostPreviewComponent,
   ],
-  imports: [CommonModule, FeedRouting],
+  imports: [CommonModule, FeedRouting, FormsModule, ReactiveFormsModule],
 })
 export class FeedModule {}

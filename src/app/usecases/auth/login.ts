@@ -9,15 +9,14 @@ export class Login {
   ) {}
   url = environment.domain + 'api/auth/login';
   private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
-  execute = (email: string, password: string): Promise<Object> => {
+  execute = (account: string, password: string): Promise<Object> => {
     return new Promise((resolve, reject) => {
-      return this.apiService.post(this.url, { email, password }).subscribe(
-        (res) => {
+      return this.apiService.post(this.url, { username: account, password }).subscribe(
+        (res: any) => {
           this.localStorage.set(
             this.authLocalStorageToken,
             JSON.stringify(res)
           );
-          //resolve(res);
           resolve(res);
         },
         (err) => {
