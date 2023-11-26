@@ -38,6 +38,5 @@ export class MessageComponent implements OnInit {
             this.data.chats = chats;
             this.data.messages = messages;
         })
-
     }
 }

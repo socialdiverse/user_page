@@ -32,14 +32,14 @@ export class FeedComponent implements OnInit {
     this.createPost = new CreatePost(this.apiService);
   }
   ngOnInit() {
-    this.fetchPostList.execute().then((res) => {
-      this.data.posts = res;
-    });
-    this.fetchPeople.execute().then((res) => {
-      this.data.people = res;
-    });
-    this.fetchFriend.execute().then((res) => {
-      this.data.friends = res;
+    Promise.all([
+      this.fetchPostList.execute(),
+      this.fetchPeople.execute(),
+      this.fetchFriend.execute(),
+    ]).then(([posts, people, friends]) => {
+      this.data.posts = posts;
+      this.data.people = people;
+      this.data.friends = friends;
     });
   }
 
