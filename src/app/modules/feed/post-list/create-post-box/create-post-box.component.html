@@ -30,12 +30,12 @@
 
     <div class="space-y-5 mt-3 p-2">
       <textarea
+        [(ngModel)]="post.content"
         class="w-full !text-black placeholder:!text-black !bg-white !border-transparent focus:!border-transparent focus:!ring-transparent !font-normal !text-xl dark:!text-white dark:placeholder:!text-white dark:!bg-slate-800"
         id="new-feed-box"
         name="new-feed-box"
         placeholder="Bạn đang nghĩ gì vậy ?"
         rows="6"
-        [(ngModel)]="post.content"
       ></textarea>
     </div>
 
@@ -119,9 +119,9 @@
       </div>
       <div class="flex items-center gap-2">
         <button
+          (click)="onCreatePost()"
           class="button bg-blue-500 text-white py-2 px-12 text-[14px]"
           type="button"
-          (click)="onCreatePost()"
         >
           Đăng
         </button>

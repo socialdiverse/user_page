@@ -6,13 +6,13 @@ import { FetchFriend } from 'src/app/usecases/feed/fetch-friend';
 import { FetchPeople } from 'src/app/usecases/feed/fetch-people';
 import { FetchPostList } from 'src/app/usecases/feed/fetch-post-list';
 import { environment } from 'src/environments/environment';
+import UIkit from "uikit";
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
 })
 export class FeedComponent implements OnInit {
-  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
   fetchPeople;
   fetchFriend;
   fetchPostList;
@@ -22,6 +22,8 @@ export class FeedComponent implements OnInit {
     friends: [] as Object,
     posts: [] as Object,
   };
+  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+
   constructor(
     private apiService: ApiService,
     private localStorage: LocalStorage
@@ -31,6 +33,7 @@ export class FeedComponent implements OnInit {
     this.fetchPostList = new FetchPostList(this.apiService);
     this.createPost = new CreatePost(this.apiService);
   }
+
   ngOnInit() {
     Promise.all([
       this.fetchPostList.execute(),
@@ -48,6 +51,7 @@ export class FeedComponent implements OnInit {
     post.userId = dataStorage.user.id;
     this.createPost.execute(post).then((res: any) => {
       this.data.posts = res;
+      UIkit.modal('#create-status').hide();
     });
   };
 }
