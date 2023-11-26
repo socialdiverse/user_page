@@ -10,19 +10,22 @@ export class FetchFriend {
         (res) => {
           const people = [
             {
-              follower_number: '125k',
-              people_name: 'SonMc',
+              id: 1,
+              fullName: 'SonMc',
               avatar: 'avatar-2.jpg',
+              isOnline: true,
             },
             {
-              follower_number: '125k',
-              people_name: 'SonMc',
+              id: 2,
+              fullName: 'SonMc',
               avatar: 'avatar-2.jpg',
+              isOnline: true,
             },
             {
-              follower_number: '125k',
-              people_name: 'SonMc',
+              id: 3,
+              fullName: 'SonMc',
               avatar: 'avatar-2.jpg',
+              isOnline: true,
             },
           ];
           //resolve(res);

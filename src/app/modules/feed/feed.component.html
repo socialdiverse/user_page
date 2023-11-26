@@ -13,13 +13,13 @@
       uk-sticky="media: 1024; end: #js-oversized; offset: 80"
     >
       <!-- peaple you might know -->
-      <app-feed-people></app-feed-people>
+      <app-feed-people [people]="data.people"></app-feed-people>
 
       <!-- latest marketplace items -->
       <app-premium-photos></app-premium-photos>
 
       <!-- online friends -->
-      <app-feed-friend></app-feed-friend>
+      <app-feed-friend [friends]="data.friends"></app-feed-friend>
 
       <!-- Pro Members -->
       <app-pro-member></app-pro-member>

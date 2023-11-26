@@ -2,12 +2,12 @@
   <div class="flex justify-between text-black dark:text-white">
     <h3 class="font-bold text-base">Danh sách bạn bè</h3>
     <button type="button">
-      <!-- <ion-icon name="sync-outline" class="text-xl"></ion-icon> -->
+      <!-- <ion-icon name="sync-outline" class="text-xl"></ion-icon>  -->
     </button>
   </div>
 
   <div class="grid grid-cols-6 gap-3 mt-4">
-    <a href="timeline.html">
+    <a href="javascript:;" *ngFor="let f of friends" [title]="f.fullName" (click)="goUserPage(f.id)">
       <div class="w-10 h-10 relative">
         <img
           src="assets/images/avatars/avatar-2.jpg"

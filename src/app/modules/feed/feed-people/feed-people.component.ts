@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-feed-people',
   templateUrl: './feed-people.component.html',
 })
-export class FeedPeopleComponent implements OnInit {
+export class FeedPeopleComponent {
   constructor() {}
-  people: any = [];
-  ngOnInit(): void {}
+
+  @Input('people') people: any = [];
+  postList: any = [];
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.people = changes['people'].currentValue;
+  }
 }

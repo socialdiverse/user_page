@@ -4,7 +4,7 @@ import { FetchChatList } from "src/app/usecases/message/fetch-chat-list";
 import { ChatDataComponent } from "src/app/modules/message/types";
 import { FetchChatRoom } from "src/app/usecases/message/fetch-chat-room";
 import { FetchChatProfile } from "src/app/usecases/message/fetch-chat-profile";
-import { FORMAT_DATE, formatDate } from "src/app/helpers/format_date";
+import { FORMAT_DATE, formatDate } from "src/app/helpers/format-date";
 
 
 @Component({

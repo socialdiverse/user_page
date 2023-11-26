@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { POST_ACCESS_MODIFIERS } from 'src/app/helpers/const_variable';
+import { POST_ACCESS_MODIFIERS } from 'src/app/helpers/const-variable';
 
 @Component({
   selector: 'app-create-post-box',
@@ -11,7 +11,7 @@ export class CreatePostBoxComponent implements OnInit {
 
   post: any = {
     content: '',
-    access_modify: this.access_modifiers[0].key,
+    accessModify: this.access_modifiers[0].key,
   };
 
   ngOnInit(): void {}

@@ -61,8 +61,16 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
+        path: 'user-detail/:id',
+        loadChildren: () =>
+          import('../modules/user-detail/user-detail.module').then(
+            (m) => m.UserDetailModule
+          ),
+        canActivate: [AuthGuard],
+      },
+      {
         path: '',
-        redirectTo: '/feed',
+        redirectTo: 'feed',
         pathMatch: 'full',
       },
       {

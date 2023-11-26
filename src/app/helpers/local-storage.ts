@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocalStorage {
+  
   get = (key: string) => {
     let value = localStorage.getItem(key);
     try {

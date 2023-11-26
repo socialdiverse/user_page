@@ -6,7 +6,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { STATUS_CODE } from './const_variable';
+import { STATUS_CODE } from './const-variable';
 
 @Injectable({
     providedIn: 'root',

@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { POST_TYPE } from 'src/app/helpers/const_variable';
+import { POST_TYPE } from 'src/app/helpers/const-variable';
 
 @Component({
   selector: 'app-post-list',

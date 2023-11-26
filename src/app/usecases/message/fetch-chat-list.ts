@@ -31,7 +31,7 @@ export class FetchChatList {
     }
 
     execute = (req: ChatListRequest): Promise<ChatList> => {
-        const url = `${environment.domain}api/fetch-chat-list?${this.queryParams.stringify(req)}}`;
+        const url = `${environment.domain}api/fetch-chat-list?${this.queryParams.stringify(req)}`;
         return new Promise((resolve, reject) => {
             this.apiService.getWithToken(url).subscribe(
                 {

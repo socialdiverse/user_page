@@ -77,11 +77,11 @@
       <div class="flex-1">
         <a href="timeline.html">
           <h4 class="text-black dark:text-white">
-            {{ post.user_posted.full_name }}
+            {{ post.poster.fullName }}
           </h4>
         </a>
         <div class="text-xs text-gray-500 dark:text-white/80">
-          {{ post.time_posted }}
+          {{ post.timePosted }}
         </div>
       </div>
 
@@ -248,7 +248,7 @@
           >
             <!-- <ion-icon class="text-lg" name="heart"></ion-icon> -->
           </button>
-          <a href="#">{{ post.like_number }}</a>
+          <a href="#">{{ post.likes.length }}</a>
         </div>
         <div
           class="p-1 px-2 bg-white rounded-full drop-shadow-md w-[212px] dark:bg-slate-700 text-2xl"
