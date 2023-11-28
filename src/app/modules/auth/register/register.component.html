@@ -27,36 +27,35 @@
 
   <!-- title -->
   <div>
-    <h2 class="text-2xl font-semibold mb-1.5">Sign up to get started</h2>
+    <h2 class="text-2xl font-semibold mb-1.5">Đăng ký một tài khoản để bắt đầu</h2>
     <p class="text-sm text-gray-700 font-normal">
-      If you already have an account,
+      Nếu bạn đã có tài khoản,
       <a
         href="javascript:;"
         routerLink="/auth/login"
         routerLinkActive="active"
         class="text-blue-700"
-        >Login here!</a
+        >đăng nhập tại đây!</a
       >
     </p>
   </div>
 
   <!-- form -->
   <form
-    method="#"
-    action="#"
     class="space-y-7 text-sm text-black font-medium dark:text-white"
     uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
   >
     <div class="grid grid-cols-2 gap-4 gap-y-7">
       <!-- first name -->
       <div>
-        <label for="email" class="">First name</label>
+        <label for="fname" class="">First name</label>
         <div class="mt-2.5">
           <input
-            id="text"
-            name="text"
+            id="fname"
+            name="fname"
             type="text"
             autofocus=""
+            [(ngModel)]="user.firstName"
             placeholder="First name"
             required=""
             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
@@ -66,13 +65,14 @@
 
       <!-- Last name -->
       <div>
-        <label for="email" class="">Last name</label>
+        <label for="lname" class="">Last name</label>
         <div class="mt-2.5">
           <input
-            id="text"
-            name="text"
+            id="lname"
+            name="lname"
             type="text"
             placeholder="Last name"
+            [(ngModel)]="user.lastName"
             required=""
             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
           />
@@ -87,6 +87,7 @@
             id="email"
             name="email"
             type="email"
+            [(ngModel)]="user.email"
             placeholder="Email"
             required=""
             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
@@ -96,13 +97,14 @@
 
       <!-- password -->
       <div>
-        <label for="email" class="">Password</label>
+        <label for="password" class="">Mật khẩu</label>
         <div class="mt-2.5">
           <input
             id="password"
             name="password"
+            [(ngModel)]="user.password"
             type="password"
-            placeholder="***"
+            placeholder="******"
             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
           />
         </div>
@@ -110,13 +112,13 @@
 
       <!-- Confirm Password -->
       <div>
-        <label for="email" class="">Confirm Password</label>
+        <label for="email" class="">Nhập lại mật khẩu</label>
         <div class="mt-2.5">
           <input
             id="password"
             name="password"
             type="password"
-            placeholder="***"
+            placeholder="******"
             class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
           />
         </div>
@@ -138,8 +140,12 @@
 
       <!-- submit button -->
       <div class="col-span-2">
-        <button type="submit" class="button bg-primary text-white w-full">
-          Get Started
+        <button
+          type="button"
+          (click)="register()"
+          class="button bg-primary text-white w-full"
+        >
+          Đăng ký
         </button>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { FetchFriend } from 'src/app/usecases/feed/fetch-friend';
 import { FetchPeople } from 'src/app/usecases/feed/fetch-people';
 import { FetchPostList } from 'src/app/usecases/feed/fetch-post-list';
 import { environment } from 'src/environments/environment';
-import UIkit from "uikit";
+import UIkit from 'uikit';
 
 @Component({
   selector: 'app-feed',
@@ -17,10 +17,10 @@ export class FeedComponent implements OnInit {
   fetchFriend;
   fetchPostList;
   createPost;
-  data = {
-    people: [] as Object,
-    friends: [] as Object,
-    posts: [] as Object,
+  data: any = {
+    people: [],
+    friends: [],
+    posts: [],
   };
   private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
 
@@ -35,22 +35,24 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit() {
-    Promise.all([
-      this.fetchPostList.execute(),
-      this.fetchPeople.execute(),
-      this.fetchFriend.execute(),
-    ]).then(([posts, people, friends]) => {
+    this.fetchPostList.execute().then((posts: any) => {
       this.data.posts = posts;
-      this.data.people = people;
-      this.data.friends = friends;
     });
+
+    // this.fetchPeople.execute().then((people) => {
+    //   this.data.people = people;
+    // });
+
+    // this.fetchFriend.execute().then((friends) => {
+    //   this.data.friends = friends;
+    // });
   }
 
   create_post = (post: any) => {
     const dataStorage = this.localStorage.get(this.authLocalStorageToken);
     post.userId = dataStorage.user.id;
     this.createPost.execute(post).then((res: any) => {
-      this.data.posts = res;
+      this.data.posts.unshift(res);
       UIkit.modal('#create-status').hide();
     });
   };

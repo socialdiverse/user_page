@@ -1,28 +1,22 @@
 import { ApiService } from 'src/app/helpers/api.service';
-import { LocalStorage } from 'src/app/helpers/local-storage';
 import { environment } from 'src/environments/environment';
 
-export class Login {
-  constructor(
-    public apiService: ApiService,
-    private localStorage: LocalStorage
-  ) {}
+export class LoginUseCase {
+  constructor(public apiService: ApiService) {}
   url = environment.domain + 'api/auth/login';
-  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+
   execute = (account: string, password: string): Promise<Object> => {
     return new Promise((resolve, reject) => {
-      return this.apiService.post(this.url, { username: account, password }).subscribe(
-        (res: any) => {
-          this.localStorage.set(
-            this.authLocalStorageToken,
-            JSON.stringify(res)
-          );
-          resolve(res);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+      return this.apiService
+        .post(this.url, { email: account, password })
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
     });
   };
 }
