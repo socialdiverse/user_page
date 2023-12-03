@@ -1,19 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProfileUser } from "src/app/modules/message/types";
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { ApiService } from 'src/app/helpers/api.service';
+import { FetchChatProfile } from 'src/app/usecases/message/fetch-chat-profile';
 
 @Component({
   selector: 'app-chat-profile',
   templateUrl: './chat-profile.component.html',
-  styleUrls: ['./chat-profile.component.css']
+  styleUrls: ['./chat-profile.component.css'],
 })
-export class ChatProfileComponent implements OnInit {
-  @Input('profile') profile: ProfileUser | null = null;
-  
+export class ChatProfileComponent {
+  @Input('userId') userId: number = 0;
 
-  constructor() {
+  fetchProfileUser;
+  profile: any = {};
+
+  constructor(private apiService: ApiService) {
+    this.fetchProfileUser = new FetchChatProfile(this.apiService);
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges) {
+    this.userId = changes['userId'].currentValue;
+    this.getUserProfile(this.userId);
   }
 
+  getUserProfile = (userId: number) => {
+    if (userId != 0) {
+      this.fetchProfileUser.execute(userId).then((u) => {
+        this.profile = u;
+      });
+    }
+  };
 }

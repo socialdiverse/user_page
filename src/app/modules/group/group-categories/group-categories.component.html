@@ -6,7 +6,7 @@
       Find a group by browsing top categories.
     </p>
   </div>
-  <a class="text-blue-500 sm:block hidden text-sm" href="#"> See all </a>
+  <a class="text-blue-500 sm:block hidden text-sm" href="javascript:;"> See all </a>
 </div>
 
 <!-- group  slider -->
@@ -15,7 +15,7 @@
     <ul class="uk-slider-items grid-small">
 
       <li *ngFor="let c of categories" class="md:w-1/5 sm:w-1/3 w-1/2">
-        <a href="#">
+        <a href="javascript:;">
           <div class="relative rounded-lg overflow-hidden">
             <img
               [src]="c.imageUrl"
@@ -36,10 +36,10 @@
   </div>
 
   <!-- slide nav icons -->
-  <a class="nav-prev" href="#" uk-slider-item="previous">
+  <a class="nav-prev" href="javascript:;" uk-slider-item="previous">
     <lucide-angular name="chevron-left"></lucide-angular>
   </a>
-  <a class="nav-next" href="#" uk-slider-item="next">
+  <a class="nav-next" href="javascript:;" uk-slider-item="next">
     <lucide-angular name="chevron-right"></lucide-angular>
   </a>
 </div>
