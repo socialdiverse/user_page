@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PremiumPhotosComponent implements OnInit {
 
-  constructor() { }
+  protected readonly Array = Array;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

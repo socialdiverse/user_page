@@ -10,7 +10,7 @@
   >
     <div class="overflow-hidden uk-slider-container">
       <ul class="-ml-2 uk-slider-items w-[calc(100%+0.5rem)]">
-        <li class="w-1/2 pr-2">
+        <li *ngFor="let i of Array.from(Array(10).keys())" class="w-1/2 pr-2">
           <a href="timeline.html">
             <div
               class="flex flex-col items-center shadow-sm p-2 rounded-xl border1"
@@ -18,9 +18,9 @@
               <a href="timeline.html">
                 <div class="relative w-16 h-16 mx-auto mt-2">
                   <img
-                    src="assets/images/avatars/avatar-5.jpg"
                     alt=""
                     class="h-full object-cover rounded-full shadow w-full"
+                    src="assets/images/avatars/avatar-5.jpg"
                   />
                 </div>
               </a>
@@ -32,8 +32,8 @@
                   12K Followers
                 </div>
                 <button
-                  type="button"
                   class="bg-secondery block font-semibold mt-4 py-1.5 rounded-lg text-sm w-full border1"
+                  type="button"
                 >
                   Follow
                 </button>
@@ -44,15 +44,15 @@
       </ul>
 
       <button
-        type="button"
         class="absolute -translate-y-1/2 bg-slate-100 rounded-full top-1/2 -left-4 grid w-9 h-9 place-items-center dark:bg-dark3"
+        type="button"
         uk-slider-item="previous"
       >
         <!-- <ion-icon name="chevron-back" class="text-2xl"></ion-icon> -->
       </button>
       <button
-        type="button"
         class="absolute -right-4 -translate-y-1/2 bg-slate-100 rounded-full top-1/2 grid w-9 h-9 place-items-center dark:bg-dark3"
+        type="button"
         uk-slider-item="next"
       >
         <!-- <ion-icon

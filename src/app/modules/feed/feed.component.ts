@@ -11,6 +11,7 @@ import UIkit from 'uikit';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
+
 })
 export class FeedComponent implements OnInit {
   fetchPeople;

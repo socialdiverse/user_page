@@ -13,14 +13,14 @@
   >
     <div class="overflow-hidden uk-slider-container">
       <ul class="-ml-2 uk-slider-items w-[calc(100%+0.5rem)]">
-        <li class="w-1/2 pr-2">
-          <a href="javascript:;">
+        <li *ngFor="let i of Array.from(Array(10).keys())" class="w-1/2 pr-2">
+          <a href="javascript:">
             <div class="relative overflow-hidden rounded-lg">
               <div class="relative w-full h-40">
                 <img
-                  src="assets/images/product/product-1.jpg"
                   alt=""
                   class="object-cover w-full h-full inset-0"
+                  src="assets/images/product/product-1.jpg"
                 />
               </div>
               <div
@@ -35,15 +35,15 @@
       </ul>
 
       <button
-        type="button"
         class="absolute bg-white rounded-full top-16 -left-4 grid w-9 h-9 place-items-center shadow dark:bg-dark3"
+        type="button"
         uk-slider-item="previous"
       >
         <!-- <ion-icon name="chevron-back" class="text-2xl"></ion-icon> -->
       </button>
       <button
-        type="button"
         class="absolute -right-4 bg-white rounded-full top-16 grid w-9 h-9 place-items-center shadow dark:bg-dark3"
+        type="button"
         uk-slider-item="next"
       >
         <!-- <ion-icon

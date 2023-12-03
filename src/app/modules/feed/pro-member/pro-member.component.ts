@@ -5,7 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pro-member.component.html',
 })
 export class ProMemberComponent implements OnInit {
-  constructor() {}
+  protected readonly Array = Array;
 
-  ngOnInit(): void {}
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
 }

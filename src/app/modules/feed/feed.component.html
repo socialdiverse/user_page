@@ -1,6 +1,6 @@
 <!-- timeline -->
 <div class="lg:flex 2xl:gap-16 gap-12 max-w-[1065px] mx-auto" id="js-oversized">
-  <div class="max-w-[680px] mx-auto">
+  <div class="max-w-[680px] w-full mx-auto">
     <app-story></app-story>
     <app-post-list [posts]="data.posts"></app-post-list>
     <app-post-loading></app-post-loading>
@@ -9,7 +9,8 @@
   <!-- sidebar -->
   <div class="flex-1">
     <div
-      class="lg:space-y-4 lg:pb-8 max-lg:grid sm:grid-cols-2 max-lg:gap-6"
+      class="lg:space-y-4 lg:pb-8 flex flex-col max-lg:grid sm:grid-cols-2 max-lg:gap-6"
+      style="max-width: 337px;"
       uk-sticky="media: 1024; end: #js-oversized; offset: 80"
     >
       <!-- peaple you might know -->
