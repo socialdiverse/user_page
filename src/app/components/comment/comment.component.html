@@ -2,7 +2,7 @@
   class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40"
 >
   <div
-    *ngFor="let cmt of comment.items"
+    *ngFor="let cmt of comment?.items"
     class="flex items-start gap-3 relative"
   >
     <a href="timeline.html">
@@ -24,7 +24,7 @@
   </div>
 
   <button
-    *ngIf="comment.hasNext"
+    *ngIf="comment?.hasNext"
     type="button"
     class="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 mt-2"
   >

@@ -75,7 +75,7 @@
           src="assets/images/avatars/avatar-5.jpg"
         />
       </a>
-      <div class="flex-1">
+      <!-- <div class="flex-1">
         <a href="timeline.html">
           <h4 class="text-black dark:text-white">
             {{ post.poster.fullName }}
@@ -84,7 +84,7 @@
         <div class="text-xs text-gray-500 dark:text-white/80">
           {{ post.timePosted }}
         </div>
-      </div>
+      </div> -->
 
       <div class="-mr-1">
         <button
@@ -170,14 +170,16 @@
       href="#preview_modal"
       uk-toggle
     >
-      <div class="relative w-full lg:h-96 h-full sm:px-4">
+      <!-- <div class="relative w-full lg:h-96 h-full sm:px-4">
         <img
           alt=""
           class="sm:rounded-lg w-full h-full object-cover"
           src="assets/images/post/img-2.jpg"
         />
-      </div>
+      </div> -->
+      <app-photo [photo]="post.images"></app-photo>
     </a>
+    
     <!-- post content type slide -->
     <div
       *ngIf="post.type == post_type.POST_SLIDE"
@@ -230,7 +232,11 @@
         </li>
       </ul>
 
-      <a class="nav-prev left-6" href="javascript:" uk-slideshow-item="previous">
+      <a
+        class="nav-prev left-6"
+        href="javascript:"
+        uk-slideshow-item="previous"
+      >
         <!-- <ion-icon name="chevron-back" class="text-2xl"></ion-icon> -->
       </a>
       <a class="nav-next right-6" href="javascript:" uk-slideshow-item="next">
@@ -249,7 +255,7 @@
           >
             <!-- <ion-icon class="text-lg" name="heart"></ion-icon> -->
           </button>
-          <a href="javascript:">{{ post.likes.length }}</a>
+          <!-- <a href="javascript:">{{ post.likes.length }}</a> -->
         </div>
         <div
           class="p-1 px-2 bg-white rounded-full drop-shadow-md w-[212px] dark:bg-slate-700 text-2xl"
@@ -303,7 +309,7 @@
         >
           <!-- <ion-icon class="text-lg" name="chatbubble-ellipses"></ion-icon> -->
         </button>
-        <span>{{ post.comment.total }}</span>
+        <!-- <span>{{ post.comment.total }}</span> -->
       </div>
       <button class="button-icon ml-auto" type="button">
         <!-- <ion-icon class="text-xl" name="paper-plane-outline"></ion-icon> -->

@@ -11,6 +11,7 @@ import { FeedPeopleComponent } from './feed-people/feed-people.component';
 import { TrendComponent } from './trend/trend.component';
 import { ProMemberComponent } from './pro-member/pro-member.component';
 import { CommentComponent } from 'src/app/components/comment/comment.component';
+import { PhotoComponent } from 'src/app/components/photo/photo.component';
 import { ChatBoxComponent } from 'src/app/components/chatbox/chatbox.component';
 import { IconComponent } from 'src/app/components/icon/icon.component';
 import { PostPreviewComponent } from './post-list/post-preview/post-preview.component';
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TrendComponent,
     ProMemberComponent,
     CommentComponent,
+    PhotoComponent,
     IconComponent,
     ChatBoxComponent,
     CreatePostBoxComponent,

@@ -23,7 +23,9 @@ export class PostListComponent {
   constructor(private apiService: ApiService) {
     this.commentOnPost = new CommentOnPost(this.apiService);
   }
+  
   ngOnChanges(changes: SimpleChanges) {
+    console.log(this.posts);
     this.posts = changes['posts'].currentValue;
   }
   comment = (postId: any) => {
