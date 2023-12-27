@@ -1,5 +1,31 @@
 <div class="page-heading">
-  <h1 class="page-title">Groups</h1>
+  <div class="flex">
+    <h1 class="page-title">Groups</h1>
+    <button
+      type="button"
+      class="sm:p-2 p-1 rounded-full relative sm:bg-secondery dark:text-white ml-4"
+      uk-toggle="target: #create-group"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-5 h-5 max-sm:hidden"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4.5v15m7.5-7.5h-15"
+        ></path>
+      </svg>
+      <!-- <ion-icon
+    name="add-circle-outline"
+    class="sm:hidden text-2xl"
+  ></ion-icon> -->
+    </button>
+  </div>
   <nav class="nav__underline">
     <ul
       class="group"
@@ -34,9 +60,9 @@
           </h4>
         </a>
         <div class="card-list-info font-normal mt-1">
-          <a href="#"> {{s.category}} </a>
+          <a href="#"> {{ s.category }} </a>
           <div class="md:block hidden">·</div>
-          <div>{{s.membersCount}} members</div>
+          <div>{{ s.membersCount }} members</div>
         </div>
         <div class="flex gap-2">
           <button class="button bg-primary text-white flex-1" type="button">
@@ -61,13 +87,13 @@
       </a>
       <div class="card-body">
         <a href="timeline-group.html">
-          <h4 class="card-title">{{p.name}}</h4></a
+          <h4 class="card-title">{{ p.name }}</h4></a
         >
         <div class="card-text">
           <div class="card-list-info font-normal mt-1">
-            <div>{{p.membersCount}} members</div>
+            <div>{{ p.membersCount }} members</div>
             <div class="md:block hidden">·</div>
-            <a href="#"> {{p.category}} </a>
+            <a href="#"> {{ p.category }} </a>
           </div>
           <div class="flex items-center gap-3 mt-3">
             <div class="flex -space-x-2">
@@ -76,9 +102,8 @@
                 [src]="u"
                 class="w-6 rounded-full border-2 border-white dark:border-slate-800"
               />
-
             </div>
-            <p class="card-text">{{p.membersCount}} friend are members</p>
+            <p class="card-text">{{ p.membersCount }} friend are members</p>
           </div>
         </div>
         <div class="flex gap-2">
@@ -98,18 +123,18 @@
     <div *ngFor="let m of myGroups" class="card">
       <a href="timeline-group.html">
         <div class="card-media h-24">
-          <img [src]="m.backgroundUrl  " alt="" />
+          <img [src]="m.backgroundUrl" alt="" />
           <div class="card-overly"></div>
         </div>
       </a>
       <div class="card-body">
         <a href="timeline-group.html">
-          <h4 class="card-title">{{m.name}}</h4>
+          <h4 class="card-title">{{ m.name }}</h4>
         </a>
         <div class="card-list-info font-normal mt-1">
-          <a href="#"> {{m.category}} </a>
+          <a href="#"> {{ m.category }} </a>
           <div class="md:block hidden">·</div>
-          <div>{{m.membersCount}} members</div>
+          <div>{{ m.membersCount }} members</div>
         </div>
         <div class="flex gap-2">
           <button
@@ -118,9 +143,7 @@
           >
             Join
           </button>
-          <button class="button bg-secondery flex-1" type="button">
-            Edit
-          </button>
+          <button class="button bg-secondery flex-1" type="button">Edit</button>
         </div>
       </div>
     </div>

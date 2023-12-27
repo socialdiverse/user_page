@@ -83,18 +83,28 @@
       >
         <div class="relative w-14 h-14 shrink-0">
           <img
-            [src]="chat.avatarUrl"
+            [src]="chat.avatar"
             alt=""
             class="object-cover w-full h-full rounded-full"
           />
         </div>
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2 mb-1.5">
-            <div class="mr-auto text-sm text-black dark:text-white font-medium">{{ chat.name }}</div>
-            <div [appTimeAgo]="chat.lastMessageTime" class="text-xs font-light text-gray-500 dark:text-white/70"></div>
-            <div *ngIf="chat.isOnline" class="w-2.5 h-2.5 bg-blue-600 rounded-full dark:bg-slate-700"></div>
+            <div class="mr-auto text-sm text-black dark:text-white font-medium">
+              {{ chat.name }}
+            </div>
+            <div
+              [appTimeAgo]="chat.lastMessageTime"
+              class="text-xs font-light text-gray-500 dark:text-white/70"
+            ></div>
+            <div
+              *ngIf="chat.isOnline"
+              class="w-2.5 h-2.5 bg-blue-600 rounded-full dark:bg-slate-700"
+            ></div>
           </div>
-          <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">
+          <div
+            class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap"
+          >
             {{ chat.lastMessage }}
           </div>
         </div>

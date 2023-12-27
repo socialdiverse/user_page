@@ -11,6 +11,7 @@ import {
   LucideAngularModule,
   PlusCircle,
 } from 'lucide-angular';
+import { CreateGroupBoxComponent } from './create-group-box/create-group-box.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {
     TagGroupComponent,
     GroupCategoriesComponent,
     GroupSuggestComponent,
+    CreateGroupBoxComponent,
   ],
   imports: [
     CommonModule,

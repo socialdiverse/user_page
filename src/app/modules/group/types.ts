@@ -22,7 +22,7 @@ export type GroupSuggestion = TagGroup & {
 export type GroupSuggestionList = Array<GroupSuggestion>;
 
 export type GroupCategory = {
-  imageUrl: string;
+  image: string;
   name: string;
 };
 export type GroupCategoryList = Array<GroupCategory>;
