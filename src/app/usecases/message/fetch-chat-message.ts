@@ -6,12 +6,10 @@ import { MediaType, MessageList } from 'src/app/modules/message/types';
 
 export type ChatRoomRequest = {
   chatId: string;
-  startTime: string;
-  endTime: string;
 };
 
-export class FetchChatRoom {
-  baseUrl = environment.domain + 'api/fetch-chat-room';
+export class FetchChatMessage {
+  baseUrl = environment.domain + 'api/fetch-chat-message';
 
   mock: MessageList;
   queryParams;
@@ -64,12 +62,8 @@ export class FetchChatRoom {
     });
   }
 
-  execute = (
-    userId: number,
-    startTime: string,
-    endTime: string
-  ): Promise<MessageList> => {
-    const url = `${this.baseUrl}?userId=${userId}&startTime=${startTime}&endTime=${endTime}`;
+  execute = (chatId: number): Promise<MessageList> => {
+    const url = `${this.baseUrl}?chatId=${chatId}`;
     return new Promise((resolve, reject) => {
       this.apiService.getWithToken(url).subscribe({
         error: () => {

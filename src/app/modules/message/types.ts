@@ -1,11 +1,12 @@
 export type ChatItem = {
-  id: string;
-  avatarUrl: string;
-  name: string;
+  chatId: string;
+  avatar: string;
+  userId: string;
+  isOnline: boolean;
   lastMessage: string;
   lastMessageTime: Date;
-  unreadMessageCount: number;
-  isOnline: boolean;
+  name: string;
+  readNewMessage: boolean;
 };
 
 export type ChatList = Array<ChatItem>;

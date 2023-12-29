@@ -13,21 +13,21 @@ export class FetchChatList {
     const mockService = new MockService();
     this.mock = mockService.generate(10, () => {
       return {
-        id: mockService._faker.string.nanoid(),
-        avatarUrl: mockService._faker.image.avatar(),
-        name: mockService._faker.person.firstName(),
-        lastMessage: mockService._faker.lorem.sentence(),
+        chatId: mockService._faker.string.nanoid(),
+        avatar: mockService._faker.image.avatar(),
+        userId: mockService._faker.string.nanoid(),
+        isOnline: mockService._faker.datatype.boolean(),
         lastMessageTime: mockService._faker.date.anytime({
           refDate: new Date(),
         }),
-        unreadMessageCount: mockService._faker.number.int(10),
-        isOnline: mockService._faker.datatype.boolean(),
+        lastMessage: mockService._faker.string.sample(10),
+        readNewMessage: mockService._faker.datatype.boolean(),
       };
     });
   }
 
-  execute = (name: string): Promise<ChatList> => {
-    const url = `${environment.domain}api/fetch-chat-list?name=${name}`;
+  execute = (): Promise<ChatList> => {
+    const url = `${environment.domain}api/fetch-chat-list`;
     return new Promise((resolve, reject) => {
       this.apiService.getWithToken(url).subscribe(
         (res: any) => {

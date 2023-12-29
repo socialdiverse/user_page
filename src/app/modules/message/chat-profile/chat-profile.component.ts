@@ -8,25 +8,11 @@ import { FetchChatProfile } from 'src/app/usecases/message/fetch-chat-profile';
   styleUrls: ['./chat-profile.component.css'],
 })
 export class ChatProfileComponent {
-  @Input('userId') userId: number = 0;
-
+  @Input('chatId') chatId: number = 0;
+  @Input('profile') profile: any = {};
   fetchProfileUser;
-  profile: any = {};
 
   constructor(private apiService: ApiService) {
     this.fetchProfileUser = new FetchChatProfile(this.apiService);
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.userId = changes['userId'].currentValue;
-    this.getUserProfile(this.userId);
-  }
-
-  getUserProfile = (userId: number) => {
-    if (userId != 0) {
-      this.fetchProfileUser.execute(userId).then((u) => {
-        this.profile = u;
-      });
-    }
-  };
 }

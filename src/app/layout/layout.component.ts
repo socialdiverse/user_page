@@ -12,6 +12,6 @@ export class LayoutComponent implements OnInit {
     const signalRConnection = new SignalRConnectionManager('chat');
     signalRConnection.connection.on('PushNotification', (context: any) => {
       console.log(context);
-    }); 
+    });
   }
 }

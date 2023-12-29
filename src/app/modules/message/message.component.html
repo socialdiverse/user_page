@@ -82,14 +82,14 @@
         >
           <a
             id="user-item"
-            *ngFor="let chat of fiends"
-            (click)="chatSelectedUser(chat.id)"
+            *ngFor="let chat of privateList"
+            (click)="selectedChat(chat.chatId)"
             class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery"
             href="javascript:;"
           >
             <div class="relative w-14 h-14 shrink-0">
               <img
-                [src]="chat.avatarUrl"
+                [src]="chat.avatar"
                 alt=""
                 class="object-cover w-full h-full rounded-full"
               />
@@ -122,8 +122,12 @@
     </div>
 
     <!-- message center -->
-    <app-chat-room [userId]="userIdSelected"> </app-chat-room>
+    <app-chat-room [chatId]="chatIdSelected" [profile]="profile">
+    </app-chat-room>
     <!-- user profile right info -->
-    <app-chat-profile [userId]="userIdSelected"></app-chat-profile>
+    <app-chat-profile
+      [chatId]="chatIdSelected"
+      [profile]="profile"
+    ></app-chat-profile>
   </div>
 </div>

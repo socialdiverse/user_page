@@ -18,7 +18,7 @@
         uk-toggle="target: .rightt ; cls: hidden"
       >
         <img
-          [src]="profile?.avatarUrl"
+          [src]="profile?.avatar"
           alt="avatar url"
           class="w-8 h-8 rounded-full shadow"
         />
@@ -90,20 +90,17 @@
               </div>
             </div>
 
-            <img
+            <!-- <img
               [src]="m.sender.avatarUrl"
               class="w-5 h-5 rounded-full shadow"
-            />
+            /> -->
           </div>
         </div>
 
         <!-- received -->
         <ng-template #elseBlock>
           <div class="flex justify-start items-end gap-3">
-            <img
-              [src]="m.sender.avatarUrl"
-              class="w-9 h-9 rounded-full shadow"
-            />
+            <img [src]="m.sender.avatar" class="w-9 h-9 rounded-full shadow" />
             <div class="flex gap-3 flex-col items-start">
               <div
                 *ngFor="let media of m.mediaList"
@@ -132,9 +129,9 @@
 
         <!-- time -->
         <div class="flex justify-center mt-6">
-          <div class="font-medium text-gray-500 text-sm dark:text-white/70">
+          <!-- <div class="font-medium text-gray-500 text-sm dark:text-white/70">
             April 8,2023,6:30 AM
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
