@@ -25,7 +25,7 @@ export class PostListComponent {
   }
   
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.posts);
+    // console.log(this.posts);
     this.posts = changes['posts'].currentValue;
   }
   comment = (postId: any) => {
