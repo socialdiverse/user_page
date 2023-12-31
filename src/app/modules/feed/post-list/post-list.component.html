@@ -75,7 +75,7 @@
           src="assets/images/avatars/avatar-5.jpg"
         />
       </a>
-      <!-- <div class="flex-1">
+      <div class="flex-1">
         <a href="timeline.html">
           <h4 class="text-black dark:text-white">
             {{ post.poster.fullName }}
@@ -84,7 +84,7 @@
         <div class="text-xs text-gray-500 dark:text-white/80">
           {{ post.timePosted }}
         </div>
-      </div> -->
+      </div>
 
       <div class="-mr-1">
         <button
@@ -253,9 +253,9 @@
             class="button-icon text-red-500 bg-red-100 dark:bg-slate-700"
             type="button"
           >
-            <!-- <ion-icon class="text-lg" name="heart"></ion-icon> -->
+            <!-- <ion-icon name="heart" class="text-lg"></ion-icon> -->
           </button>
-          <!-- <a href="javascript:">{{ post.likes.length }}</a> -->
+          <a href="javascript:">{{ post.likes.length }}</a>
         </div>
         <div
           class="p-1 px-2 bg-white rounded-full drop-shadow-md w-[212px] dark:bg-slate-700 text-2xl"
@@ -309,7 +309,7 @@
         >
           <!-- <ion-icon class="text-lg" name="chatbubble-ellipses"></ion-icon> -->
         </button>
-        <!-- <span>{{ post.comment.total }}</span> -->
+        <span>{{ post.comment.total }}</span>
       </div>
       <button class="button-icon ml-auto" type="button">
         <!-- <ion-icon class="text-xl" name="paper-plane-outline"></ion-icon> -->
@@ -389,6 +389,7 @@
       >
         Bình luận
       </button>
+      <app-post-preview [postImages]="post.images"></app-post-preview>
     </div>
   </div>
 </div>

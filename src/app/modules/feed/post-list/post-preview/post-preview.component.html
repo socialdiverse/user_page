@@ -7,11 +7,11 @@
     <div
       class="lg:h-full lg:w-[calc(100vw-400px)] w-full h-96 flex justify-center items-center relative"
     >
-      <div class="relative z-10 w-full h-full">
+      <div *ngFor="let postImage of postImages?.items" class="relative z-10 w-full h-full">
         <img
           alt=""
           class="w-full h-full object-cover absolute"
-          src="assets/images/post/post-1.jpg"
+          src={{postImage.imgUrl}}
         />
       </div>
 
