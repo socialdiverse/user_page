@@ -20,12 +20,12 @@ export class PostListComponent {
   post_type = POST_TYPE;
   postList: any = [];
   cmt: any = {};
+  
   constructor(private apiService: ApiService) {
     this.commentOnPost = new CommentOnPost(this.apiService);
   }
   
   ngOnChanges(changes: SimpleChanges) {
-    // console.log(this.posts);
     this.posts = changes['posts'].currentValue;
   }
   comment = (postId: any) => {

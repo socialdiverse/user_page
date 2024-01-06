@@ -78,11 +78,11 @@
       <div class="flex-1">
         <a href="timeline.html">
           <h4 class="text-black dark:text-white">
-            {{ post.poster.fullName }}
+            <!-- {{ post.poster.fullName }} -->
           </h4>
         </a>
         <div class="text-xs text-gray-500 dark:text-white/80">
-          {{ post.timePosted }}
+          <!-- {{ post.timePosted }} -->
         </div>
       </div>
 
@@ -159,7 +159,8 @@
       </div>
     </div>
     <!-- post content type text -->
-    <div *ngIf="post.type == post_type.POST_TEXT" class="sm:px-4 p-2.5 pt-0">
+    <!-- *ngIf="post.type == post_type.POST_TEXT" -->
+    <div  class="sm:px-4 p-2.5 pt-0">
       <p class="font-normal">
         {{ post.content }}
       </p>
@@ -191,42 +192,18 @@
         class="uk-slideshow-items overflow-hidden rounded-xl"
         uk-lightbox="animation: fade"
       >
-        <li class="w-full">
+        <li 
+        *ngFor="let image of post.images.items"
+        class="w-full">
           <a
             class="inline"
-            data-caption="Caption 1"
-            href="https://getuikit.com/docs/images/photo3.jpg"
+            [attr.data-caption]="post?.content"
+            [attr.href]="image?.imgUrl"
           >
             <img
               alt=""
               class="w-full h-full absolute object-cover insta-0"
-              src="assets/images/post/img-2.jpg"
-            />
-          </a>
-        </li>
-        <li class="w-full">
-          <a
-            class="inline"
-            data-caption="Caption 2"
-            href="https://getuikit.com/docs/images/photo2.jpg"
-          >
-            <img
-              alt=""
-              class="w-full h-full absolute object-cover insta-0"
-              src="assets/images/post/img-3.jpg"
-            />
-          </a>
-        </li>
-        <li class="w-full">
-          <a
-            class="inline"
-            data-caption="Caption 3"
-            href="https://getuikit.com/docs/images/photo.jpg"
-          >
-            <img
-              alt=""
-              class="w-full h-full absolute object-cover insta-0"
-              src="assets/images/post/img-4.jpg"
+              [src]="image.imgUrl"
             />
           </a>
         </li>
@@ -389,7 +366,7 @@
       >
         Bình luận
       </button>
-      <app-post-preview [postImages]="post.images"></app-post-preview>
+      <app-post-preview [key]="post.id" [post]="post"></app-post-preview>
     </div>
   </div>
 </div>
