@@ -8,11 +8,13 @@ import { POST_TYPE } from 'src/app/helpers/const-variable';
 })
 export class PostPreviewComponent implements OnInit {
   @Input() post: any;
+  @Input() key!: string;
   post_type = POST_TYPE;
   
-  constructor(private apiService: ApiService) {    
+  constructor(private apiService: ApiService) { 
   }  
 
   ngOnInit(): void {
+    console.log(this.post)   
   }  
 }
