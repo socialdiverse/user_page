@@ -34,7 +34,7 @@
                     class="text-2xl shrink-0 -ml-1"
                     name="notifications-outline"
                   ></ion-icon> -->
-                    notifications setting
+                    Notifications setting
                   </a>
                   <a href="javascript:;">
                     <!-- <ion-icon
@@ -46,9 +46,8 @@
                 </nav>
               </div>
 
-              <button class="">
-                <!-- <ion-icon name="checkmark-circle-outline" class="text-2xl flex"></ion-icon> -->
-                <lucide-angular name="check-circle"></lucide-angular>
+              <button uk-toggle="target: #create-chat">
+                <lucide-angular name="plus-circle"></lucide-angular>
               </button>
 
               <!-- mobile toggle menu -->
@@ -82,7 +81,7 @@
         >
           <a
             id="user-item"
-            *ngFor="let chat of privateList"
+            *ngFor="let chat of chatList"
             (click)="selectedChat(chat.chatId)"
             class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery"
             href="javascript:;"
@@ -131,3 +130,4 @@
     ></app-chat-profile>
   </div>
 </div>
+<app-create-chat-box></app-create-chat-box>

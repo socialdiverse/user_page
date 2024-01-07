@@ -5,6 +5,7 @@ import { MessageComponent } from './message.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { ChatProfileComponent } from './chat-profile/chat-profile.component';
 import { TimeAgoDirective } from 'src/app/directives/time-ago.directive';
+import { CreateChatBoxComponent } from './create-chat-box/create-chat-box.component';
 import {
   AlertCircle,
   CheckCircle,
@@ -21,11 +22,18 @@ import {
   Smile,
   Video,
 } from 'lucide-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [MessageComponent, ChatRoomComponent, ChatProfileComponent],
+  declarations: [
+    MessageComponent,
+    ChatRoomComponent,
+    ChatProfileComponent,
+    CreateChatBoxComponent,
+  ],
   imports: [
     CommonModule,
+    FormsModule,
     MessageRouting,
     TimeAgoDirective,
     LucideAngularModule.pick({

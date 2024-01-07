@@ -1,0 +1,76 @@
+<!-- create status -->
+<div class="hidden lg:p-20 uk- open" id="create-chat" uk-modal="">
+  <div
+    class="uk-modal-dialog tt relative overflow-hidden mx-auto bg-white shadow-xl rounded-lg md:w-[520px] w-full dark:bg-dark2"
+  >
+    <div class="text-center py-4 border-b mb-0 dark:border-slate-700">
+      <h2 class="text-lg font-medium text-black">Tạo nhóm chat</h2>
+
+      <!-- close button -->
+      <button
+        class="button-icon absolute top-0 right-0 m-2.5 uk-modal-close"
+        type="button"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+    <form class="px-12 mt-4" method="#" action="#">
+      <div>
+        <label
+          for="name"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Name"
+          required
+          [(ngModel)]="chatbox.name"
+        />
+      </div>
+      <div class="mt-4">
+        <label
+          for="avatar"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Avatar Link</label
+        >
+        <input
+          type="text"
+          id="avatarLink"
+          name="avatarLink"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Avatar"
+          [(ngModel)]="chatbox.avatarLink"
+          required
+        />
+      </div>
+    </form>
+    <div class="p-5 flex justify-center items-center">
+      <div class="flex gap-2">
+        <button
+          class="button bg-blue-500 text-white py-2 px-12 text-[14px]"
+          type="button"
+          (click)="createNewGroupChat()"
+        >
+          Tạo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

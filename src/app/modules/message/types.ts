@@ -1,11 +1,10 @@
 export type ChatItem = {
   chatId: string;
+  type: string;
   avatar: string;
-  userId: string;
-  isOnline: boolean;
+  name: boolean;
   lastMessage: string;
   lastMessageTime: Date;
-  name: string;
   readNewMessage: boolean;
 };
 

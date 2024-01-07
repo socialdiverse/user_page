@@ -14,9 +14,8 @@ export class FetchChatList {
     this.mock = mockService.generate(10, () => {
       return {
         chatId: mockService._faker.string.nanoid(),
+        type: mockService._faker.string.nanoid(),
         avatar: mockService._faker.image.avatar(),
-        userId: mockService._faker.string.nanoid(),
-        isOnline: mockService._faker.datatype.boolean(),
         lastMessageTime: mockService._faker.date.anytime({
           refDate: new Date(),
         }),
