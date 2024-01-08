@@ -4,6 +4,8 @@ import {
   Input,
   SimpleChanges,
   ViewChild,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { ApiService } from 'src/app/helpers/api.service';
 import { FetchChatMessage } from 'src/app/usecases/message/fetch-chat-message';
@@ -24,24 +26,20 @@ export class ChatRoomComponent {
   content: string = '';
   @Input('chatId') chatId: number = 0;
   @Input('profile') profile: any = {};
-  messages: any = [];
+  @Input() messages: any[] = [];
+  @Output() messagesChanged = new EventEmitter<any[]>();
+
+  updateMessages(newMessage: any) {
+    this.messages.push(newMessage);
+    this.messagesChanged.emit(this.messages); // Emit the updated messages to the parent
+  }
+
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   fetchChatMessage;
   sendMessage;
-  public connection;
-  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
-
-  constructor(
-    private apiService: ApiService,
-    private localStorage: LocalStorage
-  ) {
+  constructor(private apiService: ApiService) {
     this.fetchChatMessage = new FetchChatMessage(this.apiService);
     this.sendMessage = new ChatMessage(this.apiService);
-    this.connection = new SignalRConnectionManager(
-      `chat?userId=${this.localStorage.get(this.authLocalStorageToken).user.id}`
-    ).connection;
-    this.connection.on('SendMessage', (context: any) => {
-      console.log('loen');
-    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -51,13 +49,28 @@ export class ChatRoomComponent {
     }
   }
 
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
   onFetchChatRoom = (chatId: number) => {
     if (chatId > 0) {
-      this.fetchChatMessage.execute(chatId).then((messages: any) => {
+      this.fetchChatMessage.execute(chatId).then((messages: any[]) => {
         this.messages = messages;
+        this.messagesChanged.emit(this.messages);
       });
     }
   };
+
+  ngOnInit() {
+    this.scrollToBottom();
+  }
 
   sendNewMessage = () => {
     if (this.profile.type == 'Private') {
@@ -71,6 +84,6 @@ export class ChatRoomComponent {
         this.chatId.toString()
       );
     }
-    this.onFetchChatRoom(this.chatId);
+    this.content = '';
   };
 }

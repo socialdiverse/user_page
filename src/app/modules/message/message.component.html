@@ -121,7 +121,13 @@
     </div>
 
     <!-- message center -->
-    <app-chat-room [chatId]="chatIdSelected" [profile]="profile">
+
+    <app-chat-room
+      [chatId]="chatIdSelected"
+      [profile]="profile"
+      [messages]="parentMessages"
+      (messagesChanged)="handleMessagesChange($event)"
+    >
     </app-chat-room>
     <!-- user profile right info -->
     <app-chat-profile

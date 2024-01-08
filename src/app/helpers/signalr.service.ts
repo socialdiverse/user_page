@@ -13,13 +13,12 @@ class SignalRConnectionManager {
       .configureLogging(signalR.LogLevel.Information)
       .withAutomaticReconnect()
       .build();
-
-    this.connection
-      .start()
-      .then()
-      .catch((err) => {
-        console.log(err);
-      });
+    this.startConnection();
+  }
+  private startConnection() {
+    this.connection.start().then(() => {
+      console.log(this.connection.state);
+    });
   }
 }
 

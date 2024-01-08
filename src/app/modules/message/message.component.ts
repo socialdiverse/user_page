@@ -13,10 +13,10 @@ import { environment } from 'src/environments/environment';
 })
 export class MessageComponent implements OnInit {
   chatList: any = [];
+  parentMessages: any[] = [];
   fetchChatList;
   fetchchatProfile;
-  connectionId: string = '';
-  public connection;
+  connection: any;
   chatIdSelected: number = 0;
   profile: any = {};
   private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
@@ -26,35 +26,48 @@ export class MessageComponent implements OnInit {
   ) {
     this.fetchChatList = new FetchChatList(this.apiService);
     this.fetchchatProfile = new FetchChatProfile(this.apiService);
-    this.connection = new SignalRConnectionManager(
-      `chat?userId=${this.localStorage.get(this.authLocalStorageToken).user.id}`
-    ).connection;
-    this.connection.on('ReceiveConnectionId', (connectionId: string) => {
-      this.connectionId = connectionId;
-    });
-    console.log(this.connection.state);
+  }
+  handleMessagesChange(newMessages: any[]) {
+    this.parentMessages = newMessages;
   }
 
-  ngOnInit(): void {
+  async initializeConnection() {
+    return new Promise<void>((resolve) => {
+      this.connection = new SignalRConnectionManager(
+        `chat?userId=${
+          this.localStorage.get(this.authLocalStorageToken).user.id
+        }`
+      ).connection;
+
+      this.connection.on('ReceiveConnectionId', (connectionId: string) => {
+        resolve();
+      });
+    });
+  }
+
+  ngOnInit() {
     this.fetchChatList.execute().then((res) => {
       this.chatList = res;
       this.chatIdSelected = res.length > 0 ? parseInt(res[0].chatId) : 0;
       this.profile = this.onFetchProfile(this.chatIdSelected);
-      // this.joinRoom(this.chatIdSelected);
+      this.initializeConnection().then(() => {
+        this.joinRoom(this.chatIdSelected);
+      });
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {}
   public async joinRoom(chatIdSelected: number) {
-    console.log(this.connection.state);
-
-    this.connection
-      .invoke('JoinChat', {
-        connectionId: this.connectionId,
-        chatId: this.selectedChat,
-      })
-      .catch((err) => {
-        console.error(err.toString());
-      });
+    this.connection.invoke('JoinChat', chatIdSelected.toString());
+    this.connection.on('SendMessage', (data: any) => {
+      if (
+        data.sender.id ===
+        this.localStorage.get(this.authLocalStorageToken).user.id
+      ) {
+        data.isMe = true;
+      }
+      this.parentMessages.push(data);
+    });
   }
 
   selectedChat = (chatId: number) => {
